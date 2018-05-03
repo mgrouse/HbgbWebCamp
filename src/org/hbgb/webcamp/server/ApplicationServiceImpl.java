@@ -201,8 +201,8 @@ public class ApplicationServiceImpl extends RemoteServiceServlet implements Appl
 		row.setStatus(app.getStatus());
 
 		row.setFirstName(app.getApplicant().getDemographics().getFirstName());
-		row.setFirstName(app.getApplicant().getDemographics().getLastName());
-		row.setFirstName(app.getApplicant().getDemographics().getPlayaName());
+		row.setLastName(app.getApplicant().getDemographics().getLastName());
+		row.setPlayaName(app.getApplicant().getDemographics().getPlayaName());
 
 		row.setEmail(app.getEmail());
 

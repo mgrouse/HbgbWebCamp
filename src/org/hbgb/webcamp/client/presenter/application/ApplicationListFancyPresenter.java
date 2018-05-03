@@ -11,6 +11,8 @@
  */
 package org.hbgb.webcamp.client.presenter.application;
 
+import java.util.ArrayList;
+
 import org.hbgb.webcamp.client.model.ApplicationTableModel;
 import org.hbgb.webcamp.client.presenter.IModelPresenter;
 import org.hbgb.webcamp.client.view.admin.ApplicationListTableView;
@@ -19,6 +21,8 @@ import org.hbgb.webcamp.shared.ApplicationRow;
 
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.ui.HasWidgets;
+import com.google.gwt.view.client.AsyncDataProvider;
+import com.google.gwt.view.client.HasData;
 import com.google.gwt.view.client.ListDataProvider;
 
 /**
@@ -28,7 +32,6 @@ import com.google.gwt.view.client.ListDataProvider;
 public class ApplicationListFancyPresenter
 		implements IModelPresenter, ApplicationListTableView.Presenter
 {
-
 	private ApplicationTableModel model;
 	private ApplicationListTableView view;
 
@@ -44,33 +47,50 @@ public class ApplicationListFancyPresenter
 		model = new ApplicationTableModel();
 		model.setPresenter(this);
 
+		dataProvider = new ListDataProvider<>(new ArrayList<ApplicationRow>(),
+				ApplicationRow.KEY_PROVIDER);
+
+		view = new ApplicationListTableViewImpl();
+		view.setPresenter(this);
+		view.clear();
 	}
 
 	@Override
 	public void setScreen(HasWidgets container)
 	{
 		screen = container;
+		screen.add(view.asWidget());
 	}
 
 	@Override
 	public void go()
 	{
-		// view.clear();
-
 		model.fetch();
 	}
 
 	@Override
 	public void onFetchComplete()
 	{
-		dataProvider = new ListDataProvider<>(model.getData(), ApplicationRow.KEY_PROVIDER);
+		dataProvider.getList().addAll(model.getData());
 
-		view = new ApplicationListTableViewImpl(dataProvider);
-		view.setPresenter(this);
-		view.clear();
 		view.setRowData(dataProvider);
+		// dataProvider.refresh();
 
-		screen.add(view.asWidget());
+		// XXX: Use AsyncCallback in the method onRangeChanged
+		// to actaully get the data from the server side
+		AsyncDataProvider<ApplicationRow> provider = new AsyncDataProvider<ApplicationRow>()
+		{
+			@Override
+			protected void onRangeChanged(HasData<ApplicationRow> display)
+			{
+				int start = display.getVisibleRange().getStart();
+				int end = start + display.getVisibleRange().getLength();
+				// end = end >= CONTACTS.size() ? CONTACTS.size() : end;
+				// List<Contact> sub = CONTACTS.subList(start, end);
+				// updateRowData(start, sub);
+			}
+		};
+
 	}
 
 	@Override
@@ -90,8 +110,11 @@ public class ApplicationListFancyPresenter
 	@Override
 	public void onRowEdit()
 	{
-		// can send new data to database here
-		// wait?
+		// send new data to database here
+		// model.xxx()
+		// model.put()
+		// delete following refresh and place that line in onPutComplete()
+
 		dataProvider.refresh();
 	}
 

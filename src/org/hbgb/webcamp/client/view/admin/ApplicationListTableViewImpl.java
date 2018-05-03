@@ -17,16 +17,15 @@ import java.util.Comparator;
 import org.hbgb.webcamp.client.view.AbstractView;
 import org.hbgb.webcamp.shared.ApplicationRow;
 
-import com.google.gwt.cell.client.EditTextCell;
 import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiTemplate;
-import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.ColumnSortEvent.ListHandler;
 import com.google.gwt.user.cellview.client.DataGrid;
+import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.DefaultSelectionEventManager;
@@ -45,30 +44,31 @@ public class ApplicationListTableViewImpl extends AbstractView implements Applic
 	@UiTemplate(value = "ApplicationListTableView.ui.xml")
 	static interface ApplicationListTableViewUiBinder
 			extends UiBinder<Widget, ApplicationListTableViewImpl>
-	{}
+	{
+	}
 
 	private static ApplicationListTableViewUiBinder uiBinder = GWT
 			.create(ApplicationListTableViewUiBinder.class);
 
-	@UiField(provided = true)
-	DataGrid<ApplicationRow> appTable = new DataGrid<>(ApplicationRow.KEY_PROVIDER);
+	@UiField()
+	DataGrid<ApplicationRow> appTable;
 
 	private Presenter presenter;
 
-	ListDataProvider<ApplicationRow> dataProvider;
+	// ListDataProvider<ApplicationRow> dataProvider;
 
 	private final SelectionModel<ApplicationRow> selectionModel;
 	private ListHandler<ApplicationRow> sortHandler;
 
-	public ApplicationListTableViewImpl(ListDataProvider<ApplicationRow> dataProvider)
+	public ApplicationListTableViewImpl()
 	{
-		this.dataProvider = dataProvider;
+		appTable = new DataGrid<>(ApplicationRow.KEY_PROVIDER);
+
+		initWidget(uiBinder.createAndBindUi(this));
 
 		selectionModel = new SingleSelectionModel<>(ApplicationRow.KEY_PROVIDER);
 
 		sortHandler = new ListHandler<>(new ArrayList<ApplicationRow>());
-
-		initWidget(uiBinder.createAndBindUi(this));
 	}
 
 	@Override
@@ -96,8 +96,8 @@ public class ApplicationListTableViewImpl extends AbstractView implements Applic
 
 	private void setUpDataGrid()
 	{
-		// appTable = new DataGrid<>();
-		appTable.setWidth("100%");
+		appTable.setWidth("800px");
+		appTable.setHeight("800px");
 		appTable.setAutoHeaderRefreshDisabled(true);
 
 		// blank message
@@ -115,8 +115,7 @@ public class ApplicationListTableViewImpl extends AbstractView implements Applic
 		// status
 
 		// firstName
-		Column<ApplicationRow, String> firstNameColumn = new Column<ApplicationRow, String>(
-				new EditTextCell())
+		TextColumn<ApplicationRow> firstNameColumn = new TextColumn<ApplicationRow>()
 		{
 			@Override
 			public String getValue(ApplicationRow row)

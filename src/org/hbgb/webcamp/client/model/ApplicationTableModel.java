@@ -54,7 +54,8 @@ public class ApplicationTableModel implements IModel<ArrayList<ApplicationRow>>
 			@Override
 			public void onSuccess(ArrayList<ApplicationRow> result)
 			{
-				data = result;
+				// should perhaps copy into the member variable instead?
+				data.addAll(result);
 				presenter.onFetchComplete();
 			}
 
@@ -65,7 +66,6 @@ public class ApplicationTableModel implements IModel<ArrayList<ApplicationRow>>
 			}
 		});
 
-		presenter.onFetchComplete();
 	}
 
 	@Override
