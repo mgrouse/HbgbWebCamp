@@ -16,8 +16,8 @@
  */
 package org.hbgb.webcamp.client.panel;
 
-import org.hbgb.webcamp.client.applet.ApplicationListApplet;
 import org.hbgb.webcamp.client.applet.ApplicationListByYearApplet;
+import org.hbgb.webcamp.client.applet.ApplicationListFancyApplet;
 import org.hbgb.webcamp.client.applet.EarlyTeamListApplet;
 import org.hbgb.webcamp.client.applet.UserListApplet;
 import org.hbgb.webcamp.client.event.MenuEvent;
@@ -135,7 +135,7 @@ public class AdminWindowManager extends ResizeComposite implements StatusHandler
 			public void onSuccess()
 			{
 				WorkTab wTab = new WorkTab();
-				ApplicationListApplet appList = new ApplicationListApplet();
+				ApplicationListFancyApplet appList = new ApplicationListFancyApplet();
 				appList.run(wTab.getScrollPanel());
 				contentPanel.addTab("Fancy Application List", wTab);
 			}

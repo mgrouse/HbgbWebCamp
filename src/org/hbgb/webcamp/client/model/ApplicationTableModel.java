@@ -29,6 +29,8 @@ public class ApplicationTableModel implements IModel<ArrayList<ApplicationRow>>
 {
 	ApplicationServiceAsync appServAsync;
 
+	private Integer year;
+
 	private ArrayList<ApplicationRow> data;
 
 	IModelPresenter presenter;
@@ -48,14 +50,13 @@ public class ApplicationTableModel implements IModel<ArrayList<ApplicationRow>>
 	@Override
 	public void fetch()
 	{
-		appServAsync.getApplicationRows(new AsyncCallback<ArrayList<ApplicationRow>>()
+		appServAsync.getApplicationRows(year, new AsyncCallback<ArrayList<ApplicationRow>>()
 		{
 
 			@Override
 			public void onSuccess(ArrayList<ApplicationRow> result)
 			{
-				// should perhaps copy into the member variable instead?
-				data.addAll(result);
+				data = result;
 				presenter.onFetchComplete();
 			}
 
@@ -88,5 +89,10 @@ public class ApplicationTableModel implements IModel<ArrayList<ApplicationRow>>
 	{
 		// TODO Auto-generated method stub
 		// copy
+	}
+
+	public void setYear(int y)
+	{
+		year = y;
 	}
 }

@@ -153,11 +153,11 @@ public class ApplicationServiceImpl extends RemoteServiceServlet implements Appl
 	}
 
 	@Override
-	public ArrayList<ApplicationRow> getApplicationRows()
+	public ArrayList<ApplicationRow> getApplicationRows(int year)
 	{
 		ArrayList<ApplicationRow> rows = new ArrayList<>();
 
-		List<Application> applications = purgeNoShows(getApplications(Utils.getThisYearInt()));
+		List<Application> applications = purgeNoShows(getApplications(year));
 
 		for (Application app : applications)
 		{
@@ -203,19 +203,26 @@ public class ApplicationServiceImpl extends RemoteServiceServlet implements Appl
 		row.setFirstName(app.getApplicant().getDemographics().getFirstName());
 		row.setLastName(app.getApplicant().getDemographics().getLastName());
 		row.setPlayaName(app.getApplicant().getDemographics().getPlayaName());
-
 		row.setEmail(app.getEmail());
 
-		row.setCommittee(app.getCommitteeInfoBlock().getAssignedCommittee());
+		row.setChoice1(app.getCircleInfoBlock().getCircle1());
+		row.setChoice2(app.getCircleInfoBlock().getCircle2());
+		row.setCircle(app.getCircleInfoBlock().getAssignedCircle());
 
 		row.setDiet(app.getDietInfoBlock().getDietType());
 
+		row.setHasPaid(app.getPaymentInfoBlock().getHasPaidDues());
 		row.setHasTicket(app.getPaymentInfoBlock().getHasTicket());
 
+		row.setWantsET(app.getLogisticsInfoBlock().getWantsEarlyTeam());
 		row.setIsET(app.getLogisticsInfoBlock().getIsAssignedEarlyTeam());
 		row.setIsStrike(app.getLogisticsInfoBlock().getWantsStrikeTeam());
 
+		row.setArrive(app.getLogisticsInfoBlock().getArrivalDoE());
+		row.setDepart(app.getLogisticsInfoBlock().getDepartureDoE());
+
 		row.setHasRV(app.getShelterInfoBlock().getIsBringingRv());
+		row.setHasTent(app.getShelterInfoBlock().getIsInDormTent());
 		row.setHasStructure(app.getShelterInfoBlock().getHasStructure());
 
 		return row;
@@ -289,7 +296,7 @@ public class ApplicationServiceImpl extends RemoteServiceServlet implements Appl
 		// all the way down
 		// put that wisdom in getApplicationByEmail(String email)
 		source.setApplicant(getApplicant(source.getEncodedKey()));
-		source.setCommitteeInfoBlock(getApplicantsCommitteeInfoBlock(source.getEncodedKey()));
+		source.setCircleInfoBlock(getApplicantsCommitteeInfoBlock(source.getEncodedKey()));
 		source.setDietInfoBlock(getApplicantsDietInfoBlock(source.getEncodedKey()));
 		source.setLogisticsInfoBlock(getApplicantsLogisticsInfoBlock(source.getEncodedKey()));
 		source.setPaymentInfoBlock(getApplicantsPaymentInfoBlock(source.getEncodedKey()));
@@ -417,8 +424,8 @@ public class ApplicationServiceImpl extends RemoteServiceServlet implements Appl
 		{
 			for (Application app : entries)
 			{
-				CommitteeInfoBlock cib = app.getCommitteeInfoBlock();
-				if (cib != null && circle == cib.getAssignedCommittee() && app.getEmail() != null
+				CommitteeInfoBlock cib = app.getCircleInfoBlock();
+				if (cib != null && circle == cib.getAssignedCircle() && app.getEmail() != null
 						&& !app.getEmail().isEmpty())
 				{
 					emails.add(app.getEmail());
@@ -442,9 +449,9 @@ public class ApplicationServiceImpl extends RemoteServiceServlet implements Appl
 		String playaName = a.getApplicant().getDemographics().getPlayaName();
 
 		String committee = "None";
-		if (null != a.getCommitteeInfoBlock().getAssignedCommittee())
+		if (null != a.getCircleInfoBlock().getAssignedCircle())
 		{
-			committee = a.getCommitteeInfoBlock().getAssignedCommittee().toString();
+			committee = a.getCircleInfoBlock().getAssignedCircle().toString();
 		}
 
 		String earlyTeam = "NULL";
@@ -543,7 +550,7 @@ public class ApplicationServiceImpl extends RemoteServiceServlet implements Appl
 		{
 			application = pm.getObjectById(Application.class, encoded);
 
-			cBlock = application.getCommitteeInfoBlock();
+			cBlock = application.getCircleInfoBlock();
 
 			cBlock = pm.detachCopy(cBlock);
 		}
@@ -837,10 +844,10 @@ public class ApplicationServiceImpl extends RemoteServiceServlet implements Appl
 		}
 
 		String committee = "None";
-		if ((null != app.getCommitteeInfoBlock())
-				&& (null != app.getCommitteeInfoBlock().getAssignedCommittee()))
+		if ((null != app.getCircleInfoBlock())
+				&& (null != app.getCircleInfoBlock().getAssignedCircle()))
 		{
-			committee = app.getCommitteeInfoBlock().getAssignedCommittee().toString();
+			committee = app.getCircleInfoBlock().getAssignedCircle().toString();
 		}
 
 		RosterDetails d = new RosterDetails(encodedKey, photoURL, playaName, firstName, homeTown,

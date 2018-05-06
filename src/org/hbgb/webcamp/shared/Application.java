@@ -103,7 +103,7 @@ public class Application implements Serializable
 			this.setImageURL(source.getImageURL());
 			email = source.getEmail();
 			paymentInfoBlock = new PaymentInfoBlock(email, source.getPaymentInfoBlock());
-			committeeInfoBlock = new CommitteeInfoBlock(email, source.getCommitteeInfoBlock());
+			committeeInfoBlock = new CommitteeInfoBlock(email, source.getCircleInfoBlock());
 			logisticsInfoBlock = new LogisticsInfoBlock(email, null);
 			shelterInfoBlock = new ShelterInfoBlock(email, source.getShelterInfoBlock());
 			dietInfoBlock = new DietInfoBlock(email, source.getDietInfoBlock());
@@ -196,12 +196,12 @@ public class Application implements Serializable
 		this.paymentInfoBlock = payment;
 	}
 
-	public CommitteeInfoBlock getCommitteeInfoBlock()
+	public CommitteeInfoBlock getCircleInfoBlock()
 	{
 		return committeeInfoBlock;
 	}
 
-	public void setCommitteeInfoBlock(CommitteeInfoBlock commitee)
+	public void setCircleInfoBlock(CommitteeInfoBlock commitee)
 	{
 		this.committeeInfoBlock = commitee;
 	}

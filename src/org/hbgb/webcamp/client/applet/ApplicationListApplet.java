@@ -24,9 +24,12 @@ public class ApplicationListApplet implements IApplet
 {
 	private final HandlerManager eventBus = new HandlerManager(null);
 	private HasWidgets screen;
-	private final ApplicationListPresenter applicationListPresenter = new ApplicationListPresenter(eventBus);
-	private final EditWholeApplicationPresenter editWholeApplicationPresenter = new EditWholeApplicationPresenter(eventBus);
+	private final ApplicationListPresenter applicationListPresenter = new ApplicationListPresenter(
+			eventBus);
+	private final EditWholeApplicationPresenter editWholeApplicationPresenter = new EditWholeApplicationPresenter(
+			eventBus);
 
+	@Deprecated
 	public ApplicationListApplet()
 	{
 		registerEvents();

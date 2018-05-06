@@ -74,7 +74,6 @@ public class ApplicationListFancyPresenter
 		dataProvider.getList().addAll(model.getData());
 
 		view.setRowData(dataProvider);
-		// dataProvider.refresh();
 
 		// XXX: Use AsyncCallback in the method onRangeChanged
 		// to actaully get the data from the server side
@@ -116,6 +115,14 @@ public class ApplicationListFancyPresenter
 		// delete following refresh and place that line in onPutComplete()
 
 		dataProvider.refresh();
+	}
+
+	@Override
+	public void onRefreshButtonClicked()
+	{
+		// TODO Auto-generated method stub
+		model.setYear(view.getYear());
+		model.fetch();
 	}
 
 }

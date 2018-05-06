@@ -38,7 +38,7 @@ public interface ApplicationService extends RemoteService
 
 	public ArrayList<ApplicationDetails> getApplicationDetails(int year);
 
-	public ArrayList<ApplicationRow> getApplicationRows();
+	public ArrayList<ApplicationRow> getApplicationRows(int year);
 
 	public List<RosterDetails> getAcceptedRosterDetailsByYear(int var1);
 

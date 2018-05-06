@@ -117,8 +117,8 @@ public class InputCommitteeNHealerSheetInfoPresenter
 		{
 			view.setReason1(ciBlock.getReason1());
 			view.setReason2(ciBlock.getReason2());
-			view.setCommittee1(ciBlock.getCommittee1());
-			view.setCommittee2(ciBlock.getCommittee2());
+			view.setCommittee1(ciBlock.getCircle1());
+			view.setCommittee2(ciBlock.getCircle2());
 		}
 	}
 
@@ -137,8 +137,8 @@ public class InputCommitteeNHealerSheetInfoPresenter
 		CommitteeInfoBlock ciBlock = ciModel.getData();
 		ciBlock.setReason1(view.getReason1());
 		ciBlock.setReason2(view.getReason2());
-		ciBlock.setCommittee1(view.getCommittee1());
-		ciBlock.setCommittee2(view.getCommittee2());
+		ciBlock.setCircle1(view.getCommittee1());
+		ciBlock.setCircle2(view.getCommittee2());
 
 		ciModel.setData(ciBlock);
 	}

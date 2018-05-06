@@ -35,7 +35,7 @@ public interface ApplicationServiceAsync
 
 	public void getApplicationDetails(int i, AsyncCallback<ArrayList<ApplicationDetails>> var1);
 
-	public void getApplicationRows(AsyncCallback<ArrayList<ApplicationRow>> callback);
+	void getApplicationRows(int year, AsyncCallback<ArrayList<ApplicationRow>> callback);
 
 	public void findOrAddApplication(String var1, AsyncCallback<FindAppResult> var2);
 
