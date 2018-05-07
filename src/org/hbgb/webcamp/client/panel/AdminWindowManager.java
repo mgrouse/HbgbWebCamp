@@ -28,6 +28,7 @@ import org.hbgb.webcamp.client.event.StatusHandler;
 import org.hbgb.webcamp.client.panel.element.ContentPanel;
 import org.hbgb.webcamp.client.presenter.admin.SendEmailPresenter;
 import org.hbgb.webcamp.client.presenter.report.MealsReportPresenter;
+import org.hbgb.webcamp.client.presenter.report.ShelterReportPresenter;
 import org.hbgb.webcamp.client.widget.StatusBar;
 
 import com.google.gwt.core.client.GWT;
@@ -54,6 +55,8 @@ public class AdminWindowManager extends ResizeComposite implements StatusHandler
 	private static final String CAMPERS_APPLICATIONS_FANCY = "campers-applications-fancy";
 
 	private static final String REPORT_MEALS = "report-meals";
+
+	private static final String REPORT_SHELTER = "report-shelter";
 
 	private static final String UTILS_EARLY_TEAM = "utils-early-team";
 
@@ -106,6 +109,10 @@ public class AdminWindowManager extends ResizeComposite implements StatusHandler
 			openMealseReport();
 			break;
 
+		case REPORT_SHELTER:
+			openShelterReport();
+			break;
+
 		case UTILS_EARLY_TEAM:
 			openEarlyTeam();
 			break;
@@ -116,6 +123,15 @@ public class AdminWindowManager extends ResizeComposite implements StatusHandler
 
 		}
 
+	}
+
+	private void openShelterReport()
+	{
+		WorkTab wTab = new WorkTab();
+		ShelterReportPresenter report = new ShelterReportPresenter();
+		report.setScreen(wTab.getScrollPanel());
+		report.report();
+		contentPanel.addTab("Shelter Report", wTab);
 	}
 
 	/**

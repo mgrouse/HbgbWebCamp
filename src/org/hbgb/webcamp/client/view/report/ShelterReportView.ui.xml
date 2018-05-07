@@ -2,17 +2,11 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	
-	<ui:style>
-		.applicationViewFlexTable 
-		{
-			margin: 5px 0px 5px 0px;
-		}
-	</ui:style>
 
-	<g:CaptionPanel captionText="Meals Report">
+	<g:CaptionPanel captionText="Shelter Report">
 		<g:VerticalPanel>
 			
-			<g:FlexTable ui:field="table" addStyleNames="{style.applicationViewFlexTable}"/>
+			<g:FlexTable ui:field="table" addStyleNames="viewFlexTable"/>
 			
 		</g:VerticalPanel>
 	</g:CaptionPanel>

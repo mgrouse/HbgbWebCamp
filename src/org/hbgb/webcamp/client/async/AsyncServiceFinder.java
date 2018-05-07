@@ -15,9 +15,11 @@ public class AsyncServiceFinder
 	private static BlobStoreUploadURLServiceAsync blobstoreURLService;
 	private static LoginServiceAsync loginService;
 	private static HbgbAppUserServiceAsync usrService;
+	private static ShelterReportServiceAsync shelterService;
 
 	private AsyncServiceFinder()
-	{}
+	{
+	}
 
 	public static ApplicationServiceAsync getApplicationService()
 	{
@@ -47,7 +49,8 @@ public class AsyncServiceFinder
 	{
 		if (blobstoreURLService != null)
 			return blobstoreURLService;
-		blobstoreURLService = (BlobStoreUploadURLServiceAsync) GWT.create(BlobStoreUploadURLService.class);
+		blobstoreURLService = (BlobStoreUploadURLServiceAsync) GWT
+				.create(BlobStoreUploadURLService.class);
 		return blobstoreURLService;
 	}
 
@@ -65,5 +68,13 @@ public class AsyncServiceFinder
 			return usrService;
 		usrService = (HbgbAppUserServiceAsync) GWT.create(HbgbAppUserService.class);
 		return usrService;
+	}
+
+	public static ShelterReportServiceAsync getShelterReportService()
+	{
+		if (shelterService != null)
+			return shelterService;
+		shelterService = (ShelterReportServiceAsync) GWT.create(ShelterReportService.class);
+		return shelterService;
 	}
 }

@@ -370,7 +370,7 @@ public class ApplicationServiceImpl extends RemoteServiceServlet implements Appl
 	}
 
 	@SuppressWarnings("unchecked")
-	private List<Application> getApplications(int year)
+	public List<Application> getApplications(int year)
 	{
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query query = pm.newQuery(Application.class);
