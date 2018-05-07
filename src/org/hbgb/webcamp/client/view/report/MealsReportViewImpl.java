@@ -21,8 +21,14 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class MealsReportViewImpl extends Composite implements IMealsReportView
 {
+	@UiTemplate(value = "MealsReportView.ui.xml")
+	static interface MealsReportViewImplBinder extends UiBinder<Widget, MealsReportViewImpl>
+	{
+	}
+
 	private static UiBinder<Widget, MealsReportViewImpl> binder = GWT
 			.create(MealsReportViewImplBinder.class);
+
 	@UiField
 	FlexTable table;
 
@@ -138,9 +144,5 @@ public class MealsReportViewImpl extends Composite implements IMealsReportView
 	{
 		loadPop.go();
 	}
-
-	@UiTemplate(value = "MealsReportView.ui.xml")
-	static interface MealsReportViewImplBinder extends UiBinder<Widget, MealsReportViewImpl>
-	{}
 
 }

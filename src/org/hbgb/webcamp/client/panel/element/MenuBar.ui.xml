@@ -33,6 +33,10 @@
 				<g:layer left='0.5em' width='10em' top='0.5em' height='3em'>
 					<p:MenuItem contentName="report-meals" text="Meals" imageResource="{resource.shoppingCart}" />
 				</g:layer>
+				
+				<g:layer left='0.5em' width='10em' top='2.3em' height='3em'>
+					<p:MenuItem contentName="report-shelter" text="Shelters" imageResource="{resource.puzzle}" />
+				</g:layer>
 			</g:LayoutPanel>
 		</g:stack>
 		

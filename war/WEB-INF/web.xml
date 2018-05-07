@@ -58,6 +58,16 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>shelterReportServiceServlet</servlet-name>
+		<servlet-class>org.hbgb.webcamp.server.ShelterReportServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>shelterReportServiceServlet</servlet-name>
+		<url-pattern>/hbgbwebcamp/shelterReportService</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>healerSheetServiceServlet</servlet-name>
 		<servlet-class>org.hbgb.webcamp.server.HealerSheetServiceImpl</servlet-class>
 	</servlet>
