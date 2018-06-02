@@ -29,19 +29,19 @@ public class CommitteeInfoBlock implements Serializable
 	private Boolean isProfile = false;
 
 	@Persistent
-	private Circle circle1;
+	private Circle committee1;
 
 	@Persistent
 	private Text reason1 = new Text("");
 
 	@Persistent
-	private Circle circle2;
+	private Circle committee2;
 
 	@Persistent
 	private Text reason2 = new Text("");
 
 	@Persistent
-	private Circle assignedCircle;
+	private Circle assignedCommittee;
 
 	@Persistent
 	private Boolean isAssignedLead = false;
@@ -61,9 +61,9 @@ public class CommitteeInfoBlock implements Serializable
 		{
 			this.setEmail(source.getEmail());
 			this.setIsProfile(source.getIsProfile());
-			this.setCircle1(source.getCircle1());
+			this.setCommittee1(source.getCommittee1());
 			this.setReason1(source.getReason1());
-			this.setCircle2(source.getCircle2());
+			this.setCommittee2(source.getCommittee2());
 			this.setReason2(source.getReason2());
 			// this.setAssignedCommittee(source.getAssignedCommittee());
 			// this.setIsAssignedLead(source.getIsAssignedLead());
@@ -104,14 +104,14 @@ public class CommitteeInfoBlock implements Serializable
 		this.isProfile = isProfile;
 	}
 
-	public Circle getCircle1()
+	public Circle getCommittee1()
 	{
-		return circle1;
+		return committee1;
 	}
 
-	public void setCircle1(Circle committee1)
+	public void setCommittee1(Circle committee1)
 	{
-		this.circle1 = committee1;
+		this.committee1 = committee1;
 	}
 
 	public String getReason1()
@@ -124,14 +124,14 @@ public class CommitteeInfoBlock implements Serializable
 		this.reason1 = new Text(reason1);
 	}
 
-	public Circle getCircle2()
+	public Circle getCommittee2()
 	{
-		return circle2;
+		return committee2;
 	}
 
-	public void setCircle2(Circle committee2)
+	public void setCommittee2(Circle committee2)
 	{
-		this.circle2 = committee2;
+		this.committee2 = committee2;
 	}
 
 	public String getReason2()
@@ -144,14 +144,14 @@ public class CommitteeInfoBlock implements Serializable
 		this.reason2 = new Text(reason2);
 	}
 
-	public Circle getAssignedCircle()
+	public Circle getAssignedCommittee()
 	{
-		return assignedCircle;
+		return assignedCommittee;
 	}
 
-	public void setAssignedCircle(Circle assignedCommittee)
+	public void setAssignedCommittee(Circle assignedCommittee)
 	{
-		this.assignedCircle = assignedCommittee;
+		this.assignedCommittee = assignedCommittee;
 	}
 
 	public Boolean getIsAssignedLead()

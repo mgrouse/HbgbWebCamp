@@ -60,7 +60,7 @@ public interface ApplicationService extends RemoteService
 
 	public CommitteeInfoBlock getApplicantsCommitteeInfoBlock(String var1);
 
-	public Boolean updateApplicantsCommitteeInfoBlock(CommitteeInfoBlock var1);
+	public String updateApplicantsCommitteeInfoBlock(CommitteeInfoBlock var1);
 
 	public PaymentInfoBlock getApplicantsPaymentInfoBlock(String var1);
 

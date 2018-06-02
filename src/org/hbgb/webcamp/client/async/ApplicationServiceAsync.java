@@ -56,7 +56,7 @@ public interface ApplicationServiceAsync
 			AsyncCallback<CommitteeInfoBlock> var2);
 
 	public void updateApplicantsCommitteeInfoBlock(CommitteeInfoBlock var1,
-			AsyncCallback<Boolean> var2);
+			AsyncCallback<String> var2);
 
 	public void getApplicant(String var1, AsyncCallback<Burner> var2);
 

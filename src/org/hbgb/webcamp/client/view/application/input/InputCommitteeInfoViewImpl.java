@@ -360,6 +360,11 @@ public class InputCommitteeInfoViewImpl extends AbstractView implements InputCom
 	@Override
 	public void clear()
 	{
+		setCommittee1(null);
+		setCommittee2(null);
+		setReason1("");
+		setReason2("");
+
 		setModality1("");
 		setModality2("");
 		setModality3("");

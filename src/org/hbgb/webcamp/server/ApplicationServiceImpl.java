@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.jdo.PersistenceManager;
@@ -205,9 +206,9 @@ public class ApplicationServiceImpl extends RemoteServiceServlet implements Appl
 		row.setPlayaName(app.getApplicant().getDemographics().getPlayaName());
 		row.setEmail(app.getEmail());
 
-		row.setChoice1(app.getCircleInfoBlock().getCircle1());
-		row.setChoice2(app.getCircleInfoBlock().getCircle2());
-		row.setCircle(app.getCircleInfoBlock().getAssignedCircle());
+		row.setChoice1(app.getCircleInfoBlock().getCommittee1());
+		row.setChoice2(app.getCircleInfoBlock().getCommittee2());
+		row.setCircle(app.getCircleInfoBlock().getAssignedCommittee());
 
 		row.setDiet(app.getDietInfoBlock().getDietType());
 
@@ -425,7 +426,7 @@ public class ApplicationServiceImpl extends RemoteServiceServlet implements Appl
 			for (Application app : entries)
 			{
 				CommitteeInfoBlock cib = app.getCircleInfoBlock();
-				if (cib != null && circle == cib.getAssignedCircle() && app.getEmail() != null
+				if (cib != null && circle == cib.getAssignedCommittee() && app.getEmail() != null
 						&& !app.getEmail().isEmpty())
 				{
 					emails.add(app.getEmail());
@@ -449,9 +450,9 @@ public class ApplicationServiceImpl extends RemoteServiceServlet implements Appl
 		String playaName = a.getApplicant().getDemographics().getPlayaName();
 
 		String committee = "None";
-		if (null != a.getCircleInfoBlock().getAssignedCircle())
+		if (null != a.getCircleInfoBlock().getAssignedCommittee())
 		{
-			committee = a.getCircleInfoBlock().getAssignedCircle().toString();
+			committee = a.getCircleInfoBlock().getAssignedCommittee().toString();
 		}
 
 		String earlyTeam = "NULL";
@@ -562,19 +563,36 @@ public class ApplicationServiceImpl extends RemoteServiceServlet implements Appl
 	}
 
 	@Override
-	public Boolean updateApplicantsCommitteeInfoBlock(CommitteeInfoBlock ciBlock)
+	public String updateApplicantsCommitteeInfoBlock(CommitteeInfoBlock source)
 	{
+		String retVal = "";
+		CommitteeInfoBlock dbBlock = null;
+
 		PersistenceManager pm = this.getPM();
 		try
 		{
-			pm.makePersistent((Object) ciBlock);
+			dbBlock = pm.getObjectById(CommitteeInfoBlock.class, source.getEncodedKey());
 
+			// block.setEmail(ciBlock.getEmail());
+			dbBlock.setCommittee1(source.getCommittee1());
+			dbBlock.setReason1(source.getReason1());
+			dbBlock.setCommittee2(source.getCommittee2());
+			dbBlock.setReason2(source.getReason2());
+			dbBlock.setAssignedCommittee(source.getAssignedCommittee());
+			dbBlock.setIsAssignedLead(source.getIsAssignedLead());
+
+			pm.makePersistent(dbBlock);
+		}
+		catch (Exception e)
+		{
+			retVal = e.getMessage();
+			log.log(Level.WARNING, retVal);
 		}
 		finally
 		{
 			pm.close();
 		}
-		return true;
+		return retVal;
 	}
 
 	@Override
@@ -627,13 +645,43 @@ public class ApplicationServiceImpl extends RemoteServiceServlet implements Appl
 	}
 
 	@Override
-	public Boolean updateApplicant(Burner b)
+	public Boolean updateApplicant(Burner source)
 	{
+		String retVal = "";
+		Burner dbBurner = null;
+
 		PersistenceManager pm = this.getPM();
+
 		try
 		{
-			pm.makePersistent((Object) b);
+			dbBurner = pm.getObjectById(Burner.class, source.getEncodedKey());
 
+			// Demographics
+			Demographics dbDemographics = dbBurner.getDemographics();
+
+			dbDemographics.setFirstName(source.getDemographics().getFirstName());
+			dbDemographics.setLastName(source.getDemographics().getLastName());
+			dbDemographics.setPlayaName(source.getDemographics().getPlayaName());
+			dbDemographics.setGender(source.getDemographics().getGender());
+			dbDemographics.setBirthDate(source.getDemographics().getBirthDate());
+			dbDemographics.setDefaultWorldJob(source.getDemographics().getDefaultWorldJob());
+			dbDemographics.setBio(source.getDemographics().getBio());
+
+			// Contact Info
+			ContactInfo dbContact = dbBurner.getContactInfo();
+
+			dbContact.setAddress(source.getContactInfo().getAddress());
+			dbContact.setPhone(source.getContactInfo().getPhone());
+			dbContact.setSkypeName(source.getContactInfo().getSkypeName());
+			dbContact.setContactMethod(source.getContactInfo().getContactMethod());
+			dbContact.setCallTime(source.getContactInfo().getCallTime());
+
+			pm.makePersistent(dbBurner);
+		}
+		catch (Exception e)
+		{
+			retVal = e.getMessage();
+			log.log(Level.WARNING, retVal);
 		}
 		finally
 		{
@@ -662,13 +710,31 @@ public class ApplicationServiceImpl extends RemoteServiceServlet implements Appl
 	}
 
 	@Override
-	public Boolean updateApplicantsPaymentInfoBlock(PaymentInfoBlock piBlock)
+	public Boolean updateApplicantsPaymentInfoBlock(PaymentInfoBlock source)
 	{
+		String retVal = "";
+		PaymentInfoBlock dbBlock = null;
+
 		PersistenceManager pm = this.getPM();
 		try
 		{
-			pm.makePersistent(piBlock);
+			dbBlock = pm.getObjectById(PaymentInfoBlock.class, source.getEncodedKey());
 
+			dbBlock.setHasTicket(source.getHasTicket());
+			dbBlock.setTicketType(source.getTicketType());
+			dbBlock.setHasBeenInvoiced(source.getHasBeenInvoiced());
+			dbBlock.setHasPaidDues(source.getHasPaidDues());
+			dbBlock.setPaidDate(source.getPaidDate());
+			dbBlock.setWasHeeBeeSubsidized(source.getWasHeeBeeSubsidized());
+			dbBlock.setSubsidyAmt(source.getSubsidyAmt());
+			dbBlock.setSubsidyReason(source.getSubsidyReason());
+
+			pm.makePersistent(dbBlock);
+		}
+		catch (Exception e)
+		{
+			retVal = e.getMessage();
+			log.log(Level.WARNING, retVal);
 		}
 		finally
 		{
@@ -698,13 +764,27 @@ public class ApplicationServiceImpl extends RemoteServiceServlet implements Appl
 	}
 
 	@Override
-	public boolean updateApplicantsDietInfoBlock(DietInfoBlock diBlock)
+	public boolean updateApplicantsDietInfoBlock(DietInfoBlock source)
 	{
+		String retVal = "";
+		DietInfoBlock dbBlock = null;
+
 		PersistenceManager pm = this.getPM();
 		try
 		{
-			pm.makePersistent(diBlock);
+			dbBlock = pm.getObjectById(DietInfoBlock.class, source.getEncodedKey());
 
+			dbBlock.setDietType(source.getDietType());
+			dbBlock.setIsGlutenFree(source.getIsGlutenFree());
+			dbBlock.setIsLactoseIntolerant(source.getIsLactoseIntolerant());
+			dbBlock.setDietaryRestrictions(source.getDietaryRestrictions());
+
+			pm.makePersistent(dbBlock);
+		}
+		catch (Exception e)
+		{
+			retVal = e.getMessage();
+			log.log(Level.WARNING, retVal);
 		}
 		finally
 		{
@@ -734,13 +814,28 @@ public class ApplicationServiceImpl extends RemoteServiceServlet implements Appl
 	}
 
 	@Override
-	public boolean updateApplicantsShelterInfoBlock(ShelterInfoBlock shelterInfoBlock)
+	public boolean updateApplicantsShelterInfoBlock(ShelterInfoBlock source)
 	{
+		String retVal = "";
+		ShelterInfoBlock dbBlock = null;
+
 		PersistenceManager pm = this.getPM();
 		try
 		{
-			pm.makePersistent(shelterInfoBlock);
+			dbBlock = pm.getObjectById(ShelterInfoBlock.class, source.getEncodedKey());
 
+			dbBlock.setIsBringingRv(source.getIsBringingRv());
+			dbBlock.setRvInfo(source.getRvInfo());
+			dbBlock.setIsInDormTent(source.getIsInDormTent());
+			dbBlock.setHasStructure(source.getHasStructure());
+			dbBlock.setStructureInfo(source.getStructureInfo());
+
+			pm.makePersistent(dbBlock);
+		}
+		catch (Exception e)
+		{
+			retVal = e.getMessage();
+			log.log(Level.WARNING, retVal);
 		}
 		finally
 		{
@@ -770,13 +865,32 @@ public class ApplicationServiceImpl extends RemoteServiceServlet implements Appl
 	}
 
 	@Override
-	public boolean updateApplicantsLogisticsInfoBlock(LogisticsInfoBlock logisticsInfoBlock)
+	public boolean updateApplicantsLogisticsInfoBlock(LogisticsInfoBlock source)
 	{
+		String retVal = "";
+		LogisticsInfoBlock dbBlock = null;
+
 		PersistenceManager pm = this.getPM();
 		try
 		{
-			pm.makePersistent(logisticsInfoBlock);
+			dbBlock = pm.getObjectById(LogisticsInfoBlock.class, source.getEncodedKey());
 
+			dbBlock.setWantsEarlyTeam(source.getWantsEarlyTeam());
+			dbBlock.setIsAssignedEarlyTeam(source.getIsAssignedEarlyTeam());
+			dbBlock.setWantsStrikeTeam(source.getWantsStrikeTeam());
+			dbBlock.setTransType(source.getTransType());
+			dbBlock.setArrivalDoE(source.getArrivalDoE());
+			dbBlock.setArrivalTime(source.getArrivalTime());
+			dbBlock.setDepartureDoE(source.getArrivalDoE());
+			dbBlock.setDepartureTime(source.getArrivalTime());
+
+			pm.makePersistent(dbBlock);
+		}
+
+		catch (Exception e)
+		{
+			retVal = e.getMessage();
+			log.log(Level.WARNING, retVal);
 		}
 		finally
 		{
@@ -832,7 +946,7 @@ public class ApplicationServiceImpl extends RemoteServiceServlet implements Appl
 			Demographics demos = dude.getDemographics();
 			playaName = demos.getPlayaName();
 			firstName = demos.getFirstName();
-			bio = demos.getBio().getValue();
+			bio = demos.getBio();
 		}
 
 		String homeTown = "";
@@ -845,9 +959,9 @@ public class ApplicationServiceImpl extends RemoteServiceServlet implements Appl
 
 		String committee = "None";
 		if ((null != app.getCircleInfoBlock())
-				&& (null != app.getCircleInfoBlock().getAssignedCircle()))
+				&& (null != app.getCircleInfoBlock().getAssignedCommittee()))
 		{
-			committee = app.getCircleInfoBlock().getAssignedCircle().toString();
+			committee = app.getCircleInfoBlock().getAssignedCommittee().toString();
 		}
 
 		RosterDetails d = new RosterDetails(encodedKey, photoURL, playaName, firstName, homeTown,

@@ -16,7 +16,6 @@ import org.hbgb.webcamp.client.view.ViewFinder;
 import org.hbgb.webcamp.client.view.application.input.InputPersonalInfoView;
 import org.hbgb.webcamp.shared.Burner;
 
-import com.google.appengine.api.datastore.Text;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasWidgets;
@@ -75,7 +74,7 @@ public class InputPersonalInfoPresenter implements ISequentialPresenter
 		burner.getDemographics().setGender(view.getGender());
 		burner.getDemographics().setBirthDate(view.getBirthDate());
 		burner.getDemographics().setDefaultWorldJob(view.getDefaultWorldJobText());
-		burner.getDemographics().setBio(new Text(view.getBioText()));
+		burner.getDemographics().setBio(view.getBioText());
 		burner.getContactInfo().setEmail(view.getEmailText());
 		burner.getContactInfo().setPhone(view.getPhoneText());
 		burner.getContactInfo().setSkypeName(view.getSkypeNameText());

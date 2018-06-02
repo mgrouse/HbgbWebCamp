@@ -25,7 +25,7 @@ public class HealerSheetInfoBlockModel implements IKeyedModel
 	@Override
 	public void setPresenter(IKeyedModelPresenter p)
 	{
-		this.presenter = p;
+		presenter = p;
 	}
 
 	@Override
@@ -33,73 +33,80 @@ public class HealerSheetInfoBlockModel implements IKeyedModel
 	{
 		if (key != null)
 		{
-			this.hsRpcService.getHealerSheetInfoBlock(key, new AsyncCallback<HealerSheetInfoBlock>()
+			hsRpcService.getHealerSheetInfoBlock(key, new AsyncCallback<HealerSheetInfoBlock>()
 			{
 
+				@Override
 				public void onSuccess(HealerSheetInfoBlock result)
 				{
 					if (result == null)
 					{
-						Window.alert((String) "Camper's Healer Sheet info returned as null");
+						Window.alert("Camper's Healer Sheet info returned as null");
 						return;
 					}
-					HealerSheetInfoBlockModel.this.model = result;
-					HealerSheetInfoBlockModel.this.presenter.onDataFetched();
+					model = result;
+					presenter.onDataFetched();
 				}
 
+				@Override
 				public void onFailure(Throwable caught)
 				{
-					Window.alert((String) "DB Error retrieving Camper's Healer Sheet");
+					Window.alert("DB Error retrieving Camper's Healer Sheet");
 				}
 			});
 			return;
 		}
-		Window.alert((String) "Error no key for Camper's Healer Sheet!");
+		Window.alert("Error no key for Camper's Healer Sheet!");
 	}
 
 	private void fetcHSInfoBlockByEmail(String email)
 	{
-		this.hsRpcService.getHealerSheetInfoBlockByEmail(email, true, new AsyncCallback<HealerSheetInfoBlock>()
-		{
-
-			public void onSuccess(HealerSheetInfoBlock result)
-			{
-				if (result == null)
+		hsRpcService.getHealerSheetInfoBlockByEmail(email, true,
+				new AsyncCallback<HealerSheetInfoBlock>()
 				{
-					Window.alert((String) "Camper's Healer Sheet info returned as null");
-					return;
-				}
-				HealerSheetInfoBlockModel.this.model = result;
-				HealerSheetInfoBlockModel.this.presenter.onDataFetched();
-			}
 
-			public void onFailure(Throwable caught)
-			{
-				Window.alert((String) "DB Error retrieving Camper's Healer Sheet: ");
-			}
-		});
+					@Override
+					public void onSuccess(HealerSheetInfoBlock result)
+					{
+						if (result == null)
+						{
+							Window.alert("Camper's Healer Sheet info returned as null");
+							return;
+						}
+						model = result;
+						presenter.onDataFetched();
+					}
+
+					@Override
+					public void onFailure(Throwable caught)
+					{
+						Window.alert("DB Error retrieving Camper's Healer Sheet: ");
+					}
+				});
 	}
 
 	public void fetchDataByAppKey(String key)
 	{
 		if (key == null)
 			return;
-		this.appRpcService.findApplicationEmailByKey(key, new AsyncCallback<String>()
+		appRpcService.findApplicationEmailByKey(key, new AsyncCallback<String>()
 		{
 
+			@Override
 			public void onSuccess(String result)
 			{
 				if (result == null)
 				{
-					Window.alert((String) "Camper's email returned as null");
+					Window.alert("Camper's email returned as null");
 					return;
 				}
-				HealerSheetInfoBlockModel.this.fetcHSInfoBlockByEmail(result);
+				fetcHSInfoBlockByEmail(result);
 			}
 
+			@Override
 			public void onFailure(Throwable caught)
 			{
-				Window.alert((String) "DB Error retrieving Camper's Email");
+				Window.alert("DB Error retrieving Camper's Email");
 			}
 		});
 	}
@@ -107,34 +114,36 @@ public class HealerSheetInfoBlockModel implements IKeyedModel
 	@Override
 	public void putData()
 	{
-		this.hsRpcService.updateHealerSheetInfoBlock(this.model, new AsyncCallback<Boolean>()
+		hsRpcService.updateHealerSheetInfoBlock(this.model, new AsyncCallback<Boolean>()
 		{
 
+			@Override
 			public void onSuccess(Boolean saved)
 			{
 				if (saved.booleanValue())
 				{
-					HealerSheetInfoBlockModel.this.presenter.onDataPut();
+					presenter.onDataPut();
 					return;
 				}
-				Window.alert((String) "DB Error saving Healer Sheet Info");
+				Window.alert("DB Error saving Healer Sheet Info");
 			}
 
+			@Override
 			public void onFailure(Throwable caught)
 			{
-				Window.alert((String) ("RPC Error saving Healer Sheet Info: " + caught));
+				Window.alert("RPC Error saving Healer Sheet Info: " + caught);
 			}
 		});
 	}
 
 	public HealerSheetInfoBlock getData()
 	{
-		return this.model;
+		return model;
 	}
 
 	public void setData(HealerSheetInfoBlock t)
 	{
-		this.model = t;
+		model = t;
 	}
 
 }

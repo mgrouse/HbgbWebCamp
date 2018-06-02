@@ -9,7 +9,7 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/Michael/Documents/workspace/Lib/appengine-utils-client-1.0.jar"/>
-	<classpathentry kind="lib" path="/Users/Michael/Documents/workspace/Lib/appengine-utils-server-1.0.jar"/>
+	<classpathentry kind="lib" path="/Users/Michael/Documents/workspace/Lib/appengine-utils-client-1.1.jar"/>
+	<classpathentry kind="lib" path="/Users/Michael/Documents/workspace/Lib/appengine-utils-server-1.1.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

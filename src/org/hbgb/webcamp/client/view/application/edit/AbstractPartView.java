@@ -45,29 +45,29 @@ public abstract class AbstractPartView extends AbstractView implements IPartView
 	@Override
 	public void setPresenter(IPartPresenter p)
 	{
-		this.presenter = p;
+		presenter = p;
 	}
 
 	@Override
 	public void expand()
 	{
-		this.isExpanded = true;
-		this.form.setVisible(true);
-		this.expandButton.setHTML("-");
+		isExpanded = true;
+		form.setVisible(true);
+		expandButton.setHTML("-");
 	}
 
 	@Override
 	public void contract()
 	{
-		this.isExpanded = false;
-		this.form.setVisible(false);
-		this.expandButton.setHTML("+");
+		isExpanded = false;
+		form.setVisible(false);
+		expandButton.setHTML("+");
 	}
 
 	@Override
 	public boolean isExpanded()
 	{
-		return this.isExpanded;
+		return isExpanded;
 	}
 
 	@UiHandler(value = { "expandButton" })
@@ -96,19 +96,19 @@ public abstract class AbstractPartView extends AbstractView implements IPartView
 	{
 		if (this.presenter == null)
 			return;
-		this.setSaveButtonEnabled(false);
-		this.presenter.onSaveButtonClicked();
+		setSaveButtonEnabled(false);
+		presenter.onSaveButtonClicked();
 	}
 
 	@Override
 	public void setExpandButtonEnabled(Boolean enabled)
 	{
-		this.expandButton.setEnabled(enabled.booleanValue());
+		expandButton.setEnabled(enabled.booleanValue());
 	}
 
 	@Override
 	public void setSaveButtonEnabled(Boolean enabled)
 	{
-		this.saveButton.setEnabled(enabled.booleanValue());
+		saveButton.setEnabled(enabled.booleanValue());
 	}
 }

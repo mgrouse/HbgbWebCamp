@@ -16,9 +16,9 @@
 				<g:layer left='0.5em' width='10em' top='0.5em' height='3em'>
 					<p:MenuItem contentName="campers-applications" text="Applications" imageResource="{resource.peers}" />
 				</g:layer>
-				<g:layer left='0.5em' width='10em' top='2.3em' height='3em'>
+				<!-- <g:layer left='0.5em' width='10em' top='2.3em' height='3em'>
 					<p:MenuItem contentName="campers-applications-fancy" text="Applications (fancy)" imageResource="{resource.peers}" />
-				</g:layer>
+				</g:layer> -->
 				<!--//top increment by 1.8  -->
 				 <g:layer left='0.5em' width='10em' top='4.1em' height='3em'>
 					<p:MenuItem contentName="send-email" text="Send Email" imageResource="{resource.bean}" />

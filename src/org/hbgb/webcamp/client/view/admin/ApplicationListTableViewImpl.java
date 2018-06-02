@@ -104,12 +104,15 @@ public class ApplicationListTableViewImpl extends AbstractView implements Applic
 
 	public ApplicationListTableViewImpl()
 	{
+		initWidget(uiBinder.createAndBindUi(this));
+
 		loadPop = new LoadingPopup();
 
 		// selection model
 		selectionModel = new SingleSelectionModel<>(ApplicationRow.KEY_PROVIDER);
 		sortHandler = new ListHandler<>(new ArrayList<ApplicationRow>());
 
+		// necessary?
 		appTable = new DataGrid<>(ApplicationRow.KEY_PROVIDER);
 
 		appTable.setAutoHeaderRefreshDisabled(true);
@@ -122,9 +125,12 @@ public class ApplicationListTableViewImpl extends AbstractView implements Applic
 
 		appTable.addColumnSortHandler(sortHandler);
 
-		initWidget(uiBinder.createAndBindUi(this));
+		// this would need to be different functions for each ViewButton
+		addColumnsToDataGrid();
 
 		appTable.setWidth("100%");
+		// does the table have scroll bars?
+		// how to be able to make the table occupy all room necessary/avail
 		appTable.setHeight("900px");
 
 		yearListBox.addItem("2018");
@@ -177,9 +183,6 @@ public class ApplicationListTableViewImpl extends AbstractView implements Applic
 	{
 		setTotalFields(dataProvider.getList());
 		sortHandler.setList(dataProvider.getList());
-
-		// Attach a column sort handler to the ListData to sort the list.
-		addColumnsToDataGrid();
 
 		dataProvider.addDataDisplay(appTable);
 

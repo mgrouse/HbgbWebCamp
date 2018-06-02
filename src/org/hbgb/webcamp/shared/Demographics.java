@@ -48,7 +48,8 @@ public class Demographics implements Serializable
 	private Text bio = new Text("");
 
 	public Demographics()
-	{}
+	{
+	}
 
 	public Demographics(String emailText)
 	{
@@ -66,7 +67,7 @@ public class Demographics implements Serializable
 			this.setGender(source.getGender());
 			this.setBirthDate(source.getBirthDate());
 			this.setDefaultWorldJob(source.getDefaultWorldJob());
-			this.setBio(new Text(source.getBio().getValue()));
+			this.setBio(source.getBio());
 		}
 		else
 		{
@@ -159,14 +160,14 @@ public class Demographics implements Serializable
 		this.defaultWorldJob = defaultWorldJob;
 	}
 
-	public Text getBio()
+	public String getBio()
 	{
-		return bio;
+		return bio.getValue();
 	}
 
-	public void setBio(Text bio)
+	public void setBio(String txt)
 	{
-		this.bio = bio;
+		this.bio = new Text(txt);
 	}
 
 }

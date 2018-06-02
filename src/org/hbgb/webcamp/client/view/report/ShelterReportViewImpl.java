@@ -139,7 +139,7 @@ public class ShelterReportViewImpl extends Composite implements IShelterReportVi
 
 		for (Shelter s : report.getShelters())
 		{
-			if (ShelterType.Structure == s.getType())
+			if (ShelterType.RV == s.getType())
 			{
 				table.setWidget(++i, 0, new HTML(s.getName()));
 				table.setWidget(i, 1, new HTML(s.getEmail()));
