@@ -2,17 +2,6 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	
-	<ui:style>
-		.applicationViewButtonHPanel 
-		{
-			margin: 5px 0px 0x 5px;
-		}
-
-		.applicationViewFlexTable 
-		{
-			margin: 5px 0px 5px 0px;
-		}
-	</ui:style>
 
 	<g:CaptionPanel captionText="List of Applications">
 		<g:VerticalPanel>
@@ -70,7 +59,7 @@
 				
 			</g:HorizontalPanel>
 			
-			<g:HorizontalPanel addStyleNames="{style.applicationViewButtonHPanel}">
+			<g:HorizontalPanel addStyleNames="buttonHPanel">
 				<!-- 
 				<g:Button ui:field="addButton">Add</g:Button>
 				<g:Button ui:field="deleteButton">Delete</g:Button>
@@ -80,7 +69,7 @@
 			</g:HorizontalPanel>
 			
 			
-			<g:FlexTable ui:field="table" addStyleNames="{style.applicationViewFlexTable}"/>
+			<g:FlexTable ui:field="table" addStyleNames="viewFlexTable"/>
 			
 		</g:VerticalPanel>
 	</g:CaptionPanel>

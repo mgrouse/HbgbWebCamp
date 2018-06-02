@@ -33,15 +33,16 @@ public class Burner implements Serializable
 	private ContactInfo contactInfo;
 
 	@Persistent
-	private List<Burn> burns = new ArrayList<>();
+	private List<Burn> burns = null;
 
 	public Burner()
-	{}
+	{
+	}
 
 	public Burner(String emailText)
 	{
 		email = emailText;
-		burns = new ArrayList<>();
+		// burns = new ArrayList<>();
 		demographics = new Demographics(emailText);
 		contactInfo = new ContactInfo(emailText);
 	}

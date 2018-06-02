@@ -22,7 +22,9 @@ public class InputCommitteeNHealerSheetInfoPresenter
 		implements ISequentialPresenter, IKeyedModelPresenter
 {
 	private static final int NUM_MODELS = 2;
-	private int num_calls = 0;
+	private int num_fetches = 0;
+	private int num_puts = 0;
+
 	private String key;
 	private InputCommitteeInfoView view;
 	private HasWidgets screen;
@@ -45,7 +47,8 @@ public class InputCommitteeNHealerSheetInfoPresenter
 	public void setKey(String k)
 	{
 		key = k;
-		num_calls = 0;
+		num_fetches = 0;
+		num_puts = 0;
 	}
 
 	@Override
@@ -66,16 +69,20 @@ public class InputCommitteeNHealerSheetInfoPresenter
 	@Override
 	public void onDataFetched()
 	{
-		setView();
-		screen.clear();
-		screen.add(view.asWidget());
+		++num_fetches;
+		if (NUM_MODELS == num_fetches)
+		{
+			setView();
+			screen.clear();
+			screen.add(view.asWidget());
+		}
 	}
 
 	@Override
 	public void onDataPut()
 	{
-		++num_calls;
-		if (NUM_MODELS == num_calls)
+		++num_puts;
+		if (NUM_MODELS == num_puts)
 		{
 			screen.clear();
 			nextPresenter.setKey(key);

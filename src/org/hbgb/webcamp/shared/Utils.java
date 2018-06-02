@@ -25,6 +25,18 @@ public class Utils
 		return ((null == text) || (text.isEmpty()));
 	}
 
+	static public String nullOrString(Object o)
+	{
+		if (null != o)
+		{
+			return o.toString();
+		}
+		else
+		{
+			return "Null";
+		}
+	}
+
 	@SuppressWarnings("deprecation")
 	static public int getThisYearInt()
 	{

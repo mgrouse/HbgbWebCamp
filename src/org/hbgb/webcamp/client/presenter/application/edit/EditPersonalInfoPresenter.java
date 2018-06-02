@@ -9,8 +9,6 @@ import org.hbgb.webcamp.client.model.PersonalInfoBlockModel;
 import org.hbgb.webcamp.client.view.application.edit.EditPersonalInfoViewImpl;
 import org.hbgb.webcamp.shared.Burner;
 
-import com.google.appengine.api.datastore.Text;
-
 public class EditPersonalInfoPresenter extends AbstractInfoBlockPresenter
 {
 	static EditPersonalInfoViewImpl view = new EditPersonalInfoViewImpl();
@@ -51,7 +49,7 @@ public class EditPersonalInfoPresenter extends AbstractInfoBlockPresenter
 		burner.getDemographics().setGender(view.getGender());
 		burner.getDemographics().setBirthDate(view.getBirthDate());
 		burner.getDemographics().setDefaultWorldJob(view.getDefaultWorldJobText());
-		burner.getDemographics().setBio(new Text(view.getBioText()));
+		burner.getDemographics().setBio(view.getBioText());
 		burner.getContactInfo().setEmail(view.getEmailText());
 		burner.getContactInfo().setPhone(view.getPhoneText());
 		burner.getContactInfo().setSkypeName(view.getSkypeNameText());

@@ -51,7 +51,7 @@
 							</g:HorizontalPanel>
 							
 							<g:VerticalPanel>
-								<g:HTML text="What would you like your fellow HeeBees know about you? NOTE: this will be used as a bio on an upcoming page where you will be able to see some details on this years HeeBees"/>
+								<g:HTML text="What would you like your fellow HeeBees to know about you? NOTE: this will be used as a bio on an upcoming page where you will be able to see some details on this years HeeBees"/>
 					        	<g:TextArea ui:field="bioBox"/>
 							</g:VerticalPanel>		
 					        

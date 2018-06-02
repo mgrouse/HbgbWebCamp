@@ -158,7 +158,7 @@ public class ApplicationListByYearViewImpl<T> extends Composite
 		table.setWidget(0, 2, new HTML("First & Last Name"));
 		table.setWidget(0, 3, new HTML("Playa Name"));
 		table.setWidget(0, 4, new HTML("Email"));
-		table.setWidget(0, 5, new HTML("Committee"));
+		table.setWidget(0, 5, new HTML("Circle"));
 		table.setWidget(0, 6, new HTML("Early Team"));
 		table.setWidget(0, 7, new HTML("Diet"));
 		// table.setWidget(0, 7, new HTML("Invoiced"));

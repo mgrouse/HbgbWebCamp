@@ -33,6 +33,12 @@ gwt-CaptionPanel
     padding-right: 0px;
 } 
 
+.fullScreen
+{
+	width:  95%;
+	/* height: 100% */
+}
+
 .formOneColumn
 {
 	width:  80%;
@@ -62,8 +68,8 @@ gwt-CaptionPanel
   	margin-bottom: 0px;
   	*/
   	
-  	margin-left: 10px;
-  	margin-right: 10px;
+  	margin-left: auto;
+  	margin-right: auto;
   	
   	/*
     padding-top: 0px;

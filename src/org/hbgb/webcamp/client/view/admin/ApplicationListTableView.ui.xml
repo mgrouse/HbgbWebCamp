@@ -4,8 +4,76 @@
 	         xmlns:c="urn:import:com.google.gwt.user.cellview.client">
 
     
-	<g:CaptionPanel captionText="Application List">
+	<g:CaptionPanel captionText="Application List" addStyleNames="fullScreen">
 		<g:VerticalPanel>
+		    
+		    <g:HorizontalPanel addStyleNames="fullScreen">
+			    
+			    <g:VerticalPanel addStyleNames="left">
+					<g:HorizontalPanel verticalAlignment="ALIGN_MIDDLE" addStyleNames="formRow">	
+				        <g:Label addStyleNames="mediumLabel" text="Total Applicants"/>
+				    	<g:TextBox ui:field="totalApps"/>
+					</g:HorizontalPanel>	
+					
+					<g:HorizontalPanel verticalAlignment="ALIGN_MIDDLE" addStyleNames="formRow">	
+				        <g:Label addStyleNames="mediumLabel" text="New Applicants"/>
+				    	<g:TextBox ui:field="newApps"/>
+					</g:HorizontalPanel>
+					
+					<g:HorizontalPanel verticalAlignment="ALIGN_MIDDLE" addStyleNames="formRow">	
+				        <g:Label addStyleNames="mediumLabel" text="Accepted Applicants"/>
+				    	<g:TextBox ui:field="acceptedApps"/>
+					</g:HorizontalPanel>
+					
+					<g:HorizontalPanel verticalAlignment="ALIGN_MIDDLE" addStyleNames="formRow">	
+				        <g:Label addStyleNames="mediumLabel" text="Accepted ticket holders"/>
+				    	<g:TextBox ui:field="ticketApps"/>
+					</g:HorizontalPanel>
+					
+					<g:HorizontalPanel verticalAlignment="ALIGN_MIDDLE" addStyleNames="formRow">	
+				        <g:Label addStyleNames="mediumLabel" text="Paid Applicants"/>
+				    	<g:TextBox ui:field="paidApps"/>
+					</g:HorizontalPanel>
+				</g:VerticalPanel>
+				
+			    <g:VerticalPanel addStyleNames="right">
+					<g:HorizontalPanel verticalAlignment="ALIGN_MIDDLE" addStyleNames="formRow">	
+				        <g:Label addStyleNames="mediumLabel" text="Faeries"/>
+				    	<g:TextBox ui:field="faerieApps"/>
+					</g:HorizontalPanel>
+					
+					<g:HorizontalPanel verticalAlignment="ALIGN_MIDDLE" addStyleNames="formRow">	
+				        <g:Label addStyleNames="mediumLabel" text="Healers"/>
+				    	<g:TextBox ui:field="healerApps"/>
+					</g:HorizontalPanel>
+					
+					<g:HorizontalPanel verticalAlignment="ALIGN_MIDDLE" addStyleNames="formRow">	
+				        <g:Label addStyleNames="mediumLabel" text="Infrastructure"/>
+				    	<g:TextBox ui:field="infraApps"/>
+					</g:HorizontalPanel>
+					
+					<g:HorizontalPanel verticalAlignment="ALIGN_MIDDLE" addStyleNames="formRow">	
+				        <g:Label addStyleNames="mediumLabel" text="Kitchen"/>
+				    	<g:TextBox ui:field="kitchenApps"/>
+					 </g:HorizontalPanel>
+					 
+					<g:HorizontalPanel verticalAlignment="ALIGN_MIDDLE" addStyleNames="formRow">	
+				        <g:Label addStyleNames="mediumLabel" text="Un-Assigned"/>
+				    	<g:TextBox ui:field="unAssignedApps"/>
+					 </g:HorizontalPanel>
+					
+				</g:VerticalPanel>
+				
+			</g:HorizontalPanel>
+			
+			<g:HorizontalPanel addStyleNames="buttonPanel">
+				<!-- 
+				<g:Button ui:field="addButton">Add</g:Button>
+				<g:Button ui:field="deleteButton">Delete</g:Button>
+				 -->
+				 <g:ListBox ui:field="yearListBox"/>
+				 <g:Button ui:field="refreshButton">Refresh</g:Button>
+			</g:HorizontalPanel>
 		    
 		    <c:DataGrid ui:field='appTable' />
 				

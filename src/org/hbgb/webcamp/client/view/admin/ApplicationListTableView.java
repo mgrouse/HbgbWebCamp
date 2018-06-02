@@ -28,10 +28,14 @@ public interface ApplicationListTableView extends IView
 		public void onRowSelect();
 
 		public void onRowEdit();
+
+		public void onRefreshButtonClicked();
 	}
 
 	public void setPresenter(Presenter p);
 
 	public void setRowData(ListDataProvider<ApplicationRow> dataProvider);
+
+	public int getYear();
 
 }

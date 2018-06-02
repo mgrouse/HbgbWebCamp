@@ -117,7 +117,7 @@ public class EmailServiceImpl extends RemoteServiceServlet implements EmailServi
 			{
 				for (Application app : entries)
 				{
-					CommitteeInfoBlock cib = app.getCommitteeInfoBlock();
+					CommitteeInfoBlock cib = app.getCircleInfoBlock();
 
 					if (null != cib && null != cib.getAssignedCommittee()
 							&& circle.contentEquals(cib.getAssignedCommittee().toString())

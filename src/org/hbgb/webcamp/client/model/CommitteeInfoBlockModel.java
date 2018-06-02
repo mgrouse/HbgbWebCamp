@@ -23,7 +23,7 @@ public class CommitteeInfoBlockModel implements IKeyedModel
 	@Override
 	public void setPresenter(IKeyedModelPresenter p)
 	{
-		this.presenter = p;
+		presenter = p;
 	}
 
 	@Override
@@ -31,61 +31,65 @@ public class CommitteeInfoBlockModel implements IKeyedModel
 	{
 		if (key != null)
 		{
-			this.rpcService.getApplicantsCommitteeInfoBlock(key, new AsyncCallback<CommitteeInfoBlock>()
+			rpcService.getApplicantsCommitteeInfoBlock(key, new AsyncCallback<CommitteeInfoBlock>()
 			{
 
+				@Override
 				public void onSuccess(CommitteeInfoBlock result)
 				{
 					if (result == null)
 					{
-						Window.alert((String) "Applicant's Committee Info reurned as null");
+						Window.alert("Applicant's Committee Info reurned as null");
 						return;
 					}
-					CommitteeInfoBlockModel.this.model = result;
-					CommitteeInfoBlockModel.this.presenter.onDataFetched();
+					model = result;
+					presenter.onDataFetched();
 				}
 
+				@Override
 				public void onFailure(Throwable caught)
 				{
-					Window.alert((String) "DB Error retrieving Applicant's Committee Info");
+					Window.alert("DB Error retrieving Applicant's Committee Info");
 				}
 			});
 			return;
 		}
-		Window.alert((String) "Error no key for Applicant's Application!");
+		Window.alert("Error no key for Applicant's Application!");
 	}
 
 	@Override
 	public void putData()
 	{
-		this.rpcService.updateApplicantsCommitteeInfoBlock(this.model, new AsyncCallback<Boolean>()
+		rpcService.updateApplicantsCommitteeInfoBlock(model, new AsyncCallback<String>()
 		{
 
-			public void onSuccess(Boolean saved)
+			@Override
+			public void onSuccess(String msg)
 			{
-				if (saved.booleanValue())
+				if (msg.equals(""))
 				{
-					CommitteeInfoBlockModel.this.presenter.onDataPut();
+					presenter.onDataPut();
 					return;
 				}
-				Window.alert((String) "DB Error saving Applicant's Committee Info");
+				Window.alert("DB Error saving Applicant's Committee Info: " + msg);
 			}
 
+			@Override
 			public void onFailure(Throwable caught)
 			{
-				Window.alert((String) "RPC Error saving Applicant's Committee Info");
+				Window.alert("RPC Error saving Applicant's Committee Info");
 			}
 		});
 	}
 
 	public CommitteeInfoBlock getData()
 	{
-		return this.model;
+		return model;
 	}
 
 	public void setData(CommitteeInfoBlock t)
 	{
-		this.model = t;
+		model = t;
 	}
 
 }

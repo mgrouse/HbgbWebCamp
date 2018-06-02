@@ -39,5 +39,7 @@ public class EditCommitteeInfoPresenter extends AbstractInfoBlockPresenter
 		block.setCommittee2(view.getCommittee2());
 		block.setAssignedCommittee(view.getAssignedCommittee());
 		block.setIsAssignedLead(view.getIsAssignedLead());
+
+		model.setData(block);
 	}
 }
