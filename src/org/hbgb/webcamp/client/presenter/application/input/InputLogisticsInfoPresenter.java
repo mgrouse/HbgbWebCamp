@@ -28,9 +28,9 @@ public class InputLogisticsInfoPresenter implements ISequentialPresenter
 	private HasWidgets screen;
 	private IKeyPresenter nextPresenter;
 
-	public InputLogisticsInfoPresenter(String key)
+	public InputLogisticsInfoPresenter(String k)
 	{
-		this.key = key;
+		key = k;
 		view = ViewFinder.getLogisticsInfoView();
 		view.setPresenter(this);
 	}
@@ -56,8 +56,8 @@ public class InputLogisticsInfoPresenter implements ISequentialPresenter
 	@Override
 	public void go()
 	{
-		fetchData();
 		screen.clear();
+		fetchData();
 	}
 
 	private void setView()
@@ -83,9 +83,9 @@ public class InputLogisticsInfoPresenter implements ISequentialPresenter
 		}
 
 		view.setTransportation(logisticsInfoBlock.getTransType());
-		view.setArrivalDate(logisticsInfoBlock.getArrivalDoE());
+		view.setArrivalDoE(logisticsInfoBlock.getArrivalDoE());
 		view.setArrivalTime(logisticsInfoBlock.getArrivalTime());
-		view.setDepartureDate(logisticsInfoBlock.getDepartureDoE());
+		view.setDepartureDoE(logisticsInfoBlock.getDepartureDoE());
 		view.setDepartureTime(logisticsInfoBlock.getDepartureTime());
 	}
 
@@ -94,9 +94,9 @@ public class InputLogisticsInfoPresenter implements ISequentialPresenter
 		logisticsInfoBlock.setWantsEarlyTeam(view.getWantsEarlyTeam());
 		logisticsInfoBlock.setWantsStrikeTeam(view.getWantsStrikeTeam());
 		logisticsInfoBlock.setTransType(view.getTransportation());
-		logisticsInfoBlock.setArrivalDoE(view.getArrivalDate());
+		logisticsInfoBlock.setArrivalDoE(view.getArrivalDoE());
 		logisticsInfoBlock.setArrivalTime(view.getArrivalTime());
-		logisticsInfoBlock.setDepartureDoE(view.getDepartureDate());
+		logisticsInfoBlock.setDepartureDoE(view.getDepartureDoE());
 		logisticsInfoBlock.setDepartureTime(view.getDepartureTime());
 	}
 
@@ -106,7 +106,6 @@ public class InputLogisticsInfoPresenter implements ISequentialPresenter
 		{
 			rpcService.getApplicantsLogisticsInfoBlock(key, new AsyncCallback<LogisticsInfoBlock>()
 			{
-
 				@Override
 				public void onSuccess(LogisticsInfoBlock result)
 				{
@@ -128,9 +127,11 @@ public class InputLogisticsInfoPresenter implements ISequentialPresenter
 					Window.alert("DB Error retrieving Applicant's Logistics Info");
 				}
 			});
-			return;
 		}
-		Window.alert("Error no key for Applicant's Application!");
+		else
+		{
+			Window.alert("Error no key for Applicant's Application!");
+		}
 	}
 
 	@Override
@@ -153,9 +154,11 @@ public class InputLogisticsInfoPresenter implements ISequentialPresenter
 								nextPresenter.setKey(key);
 								nextPresenter.setScreen(screen);
 								nextPresenter.go();
-								return;
 							}
-							Window.alert("DB Error saving Applicant's Shelter Info");
+							else
+							{
+								Window.alert("DB Error saving Applicant's Shelter Info");
+							}
 						}
 
 						@Override
@@ -175,12 +178,15 @@ public class InputLogisticsInfoPresenter implements ISequentialPresenter
 		Boolean retVal = true;
 
 		// negative integer means arrival less than departure, which is good
-		if (logisticsInfoBlock.getArrivalDoE().compareTo(logisticsInfoBlock.getDepartureDoE()) >= 0)
-		{
-			retVal = false;
-
-			view.addMessage("Your arrival date is after or equal to your departure date.");
-		}
+		// if
+		// (logisticsInfoBlock.getArrivalDoE().compareTo(logisticsInfoBlock.getDepartureDoE())
+		// >= 0)
+		// {
+		// retVal = false;
+		//
+		// view.addMessage("Your arrival date is after or equal to your
+		// departure date.");
+		// }
 
 		// wants strike but leaves before monday
 

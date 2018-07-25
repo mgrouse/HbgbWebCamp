@@ -881,8 +881,8 @@ public class ApplicationServiceImpl extends RemoteServiceServlet implements Appl
 			dbBlock.setTransType(source.getTransType());
 			dbBlock.setArrivalDoE(source.getArrivalDoE());
 			dbBlock.setArrivalTime(source.getArrivalTime());
-			dbBlock.setDepartureDoE(source.getArrivalDoE());
-			dbBlock.setDepartureTime(source.getArrivalTime());
+			dbBlock.setDepartureDoE(source.getDepartureDoE());
+			dbBlock.setDepartureTime(source.getDepartureTime());
 
 			pm.makePersistent(dbBlock);
 		}

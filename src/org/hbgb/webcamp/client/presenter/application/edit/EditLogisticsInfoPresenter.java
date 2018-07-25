@@ -25,9 +25,9 @@ public class EditLogisticsInfoPresenter extends AbstractInfoBlockPresenter
 		view.setIsAssignedEarlyTeam(logisticsInfoBlock.getIsAssignedEarlyTeam());
 		view.setWantsStrikeTeam(logisticsInfoBlock.getWantsStrikeTeam());
 		view.setTransportation(logisticsInfoBlock.getTransType());
-		view.setArrivalDate(logisticsInfoBlock.getArrivalDoE());
+		view.setArrivalDoE(logisticsInfoBlock.getArrivalDoE());
 		view.setArrivalTime(logisticsInfoBlock.getArrivalTime());
-		view.setDepartureDate(logisticsInfoBlock.getDepartureDoE());
+		view.setDepartureDoE(logisticsInfoBlock.getDepartureDoE());
 		view.setDepartureTime(logisticsInfoBlock.getDepartureTime());
 	}
 
@@ -39,9 +39,9 @@ public class EditLogisticsInfoPresenter extends AbstractInfoBlockPresenter
 		logisticsInfoBlock.setIsAssignedEarlyTeam(view.getIsAssignedEarlyTeam());
 		logisticsInfoBlock.setWantsStrikeTeam(view.getWantsStrikeTeam());
 		logisticsInfoBlock.setTransType(view.getTransportation());
-		logisticsInfoBlock.setArrivalDoE(view.getArrivalDate());
+		logisticsInfoBlock.setArrivalDoE(view.getArrivalDoE());
 		logisticsInfoBlock.setArrivalTime(view.getArrivalTime());
-		logisticsInfoBlock.setDepartureDoE(view.getDepartureDate());
+		logisticsInfoBlock.setDepartureDoE(view.getDepartureDoE());
 		logisticsInfoBlock.setDepartureTime(view.getDepartureTime());
 	}
 }

@@ -76,7 +76,7 @@ public class ApplicationListFancyPresenter
 		view.setRowData(dataProvider);
 
 		// XXX: Use AsyncCallback in the method onRangeChanged
-		// to actaully get the data from the server side
+		// to actually get the data from the server side
 		AsyncDataProvider<ApplicationRow> provider = new AsyncDataProvider<ApplicationRow>()
 		{
 			@Override

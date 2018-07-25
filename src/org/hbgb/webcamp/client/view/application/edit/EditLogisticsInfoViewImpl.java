@@ -26,10 +26,13 @@ import com.google.gwt.user.client.ui.Widget;
 public class EditLogisticsInfoViewImpl extends AbstractPartView implements IEditLogisticsInfoView
 {
 	@UiTemplate(value = "EditLogisticsInfoView.ui.xml")
-	static interface EditLogisticsInfoViewImplBinder extends UiBinder<Widget, EditLogisticsInfoViewImpl>
-	{}
+	static interface EditLogisticsInfoViewImplBinder
+			extends UiBinder<Widget, EditLogisticsInfoViewImpl>
+	{
+	}
 
-	private static UiBinder<Widget, EditLogisticsInfoViewImpl> binder = GWT.create(EditLogisticsInfoViewImplBinder.class);
+	private static UiBinder<Widget, EditLogisticsInfoViewImpl> binder = GWT
+			.create(EditLogisticsInfoViewImplBinder.class);
 
 	@UiField
 	CheckBox wantsEarlyTeam;
@@ -57,50 +60,50 @@ public class EditLogisticsInfoViewImpl extends AbstractPartView implements IEdit
 
 	public EditLogisticsInfoViewImpl()
 	{
-		this.initWidget(binder.createAndBindUi(this));
-		this.expand();
+		initWidget(binder.createAndBindUi(this));
+		expand();
 	}
 
 	@Override
 	public void setWantsEarlyTeam(Boolean bool)
 	{
-		this.wantsEarlyTeam.setValue(bool, false);
+		wantsEarlyTeam.setValue(bool, false);
 	}
 
 	@Override
 	public Boolean getWantsEarlyTeam()
 	{
-		return this.wantsEarlyTeam.getValue();
+		return wantsEarlyTeam.getValue();
 	}
 
 	@Override
 	public void setIsAssignedEarlyTeam(Boolean bool)
 	{
-		this.isAssignedEarlyTeam.setValue(bool, false);
+		isAssignedEarlyTeam.setValue(bool, false);
 	}
 
 	@Override
 	public Boolean getIsAssignedEarlyTeam()
 	{
-		return this.isAssignedEarlyTeam.getValue();
+		return isAssignedEarlyTeam.getValue();
 	}
 
 	@Override
 	public void setWantsStrikeTeam(Boolean bool)
 	{
-		this.wantsStrikeTeam.setValue(bool, false);
+		wantsStrikeTeam.setValue(bool, false);
 	}
 
 	@Override
 	public Boolean getWantsStrikeTeam()
 	{
-		return this.wantsStrikeTeam.getValue();
+		return wantsStrikeTeam.getValue();
 	}
 
 	@Override
 	public void setTransportation(Transportation t)
 	{
-		this.transportation.setSelectedValue(t);
+		transportation.setSelectedValue(t);
 	}
 
 	@Override
@@ -110,51 +113,51 @@ public class EditLogisticsInfoViewImpl extends AbstractPartView implements IEdit
 	}
 
 	@Override
-	public void setArrivalDate(DayOfEvent doe)
+	public void setArrivalDoE(DayOfEvent doe)
 	{
-		this.arrivalDoE.setSelectedValue(doe);
+		arrivalDoE.setSelectedValue(doe);
 	}
 
 	@Override
-	public DayOfEvent getArrivalDate()
+	public DayOfEvent getArrivalDoE()
 	{
-		return this.arrivalDoE.getSelectedEnumValue();
+		return arrivalDoE.getSelectedEnumValue();
 	}
 
 	@Override
 	public void setArrivalTime(PlayaTime pt)
 	{
-		this.arrivalTime.setSelectedValue(pt);
+		arrivalTime.setSelectedValue(pt);
 	}
 
 	@Override
 	public PlayaTime getArrivalTime()
 	{
-		return this.arrivalTime.getSelectedEnumValue();
+		return arrivalTime.getSelectedEnumValue();
 	}
 
 	@Override
-	public void setDepartureDate(DayOfEvent doe)
+	public void setDepartureDoE(DayOfEvent doe)
 	{
-		this.departureDoE.setSelectedValue(doe);
+		departureDoE.setSelectedValue(doe);
 	}
 
 	@Override
-	public DayOfEvent getDepartureDate()
+	public DayOfEvent getDepartureDoE()
 	{
-		return this.departureDoE.getSelectedEnumValue();
+		return departureDoE.getSelectedEnumValue();
 	}
 
 	@Override
 	public void setDepartureTime(PlayaTime pt)
 	{
-		this.departureTime.setSelectedValue(pt);
+		departureTime.setSelectedValue(pt);
 	}
 
 	@Override
 	public PlayaTime getDepartureTime()
 	{
-		return this.departureTime.getSelectedEnumValue();
+		return departureTime.getSelectedEnumValue();
 	}
 
 }

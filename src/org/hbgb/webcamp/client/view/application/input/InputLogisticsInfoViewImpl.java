@@ -181,16 +181,15 @@ public class InputLogisticsInfoViewImpl extends AbstractView implements InputLog
 	}
 
 	@Override
-	public void setArrivalDate(DayOfEvent doe)
+	public void setArrivalDoE(DayOfEvent doe)
 	{
 		arrivalDoE.setSelectedValue(doe);
 	}
 
 	@Override
-	public DayOfEvent getArrivalDate()
+	public DayOfEvent getArrivalDoE()
 	{
-		DayOfEvent doe = arrivalDoE.getSelectedEnumValue();
-		return doe;
+		return arrivalDoE.getSelectedEnumValue();
 	}
 
 	@Override
@@ -207,13 +206,13 @@ public class InputLogisticsInfoViewImpl extends AbstractView implements InputLog
 	}
 
 	@Override
-	public void setDepartureDate(DayOfEvent doe)
+	public void setDepartureDoE(DayOfEvent doe)
 	{
 		departureDoE.setSelectedValue(doe);
 	}
 
 	@Override
-	public DayOfEvent getDepartureDate()
+	public DayOfEvent getDepartureDoE()
 	{
 		return departureDoE.getSelectedEnumValue();
 	}
@@ -246,7 +245,6 @@ public class InputLogisticsInfoViewImpl extends AbstractView implements InputLog
 	public void setStrikeDepartureDates()
 	{
 		departureDoE.lodeStrikeDates();
-		;
 	}
 
 	@Override
@@ -261,7 +259,7 @@ public class InputLogisticsInfoViewImpl extends AbstractView implements InputLog
 
 		setAllLabelsNormal();
 
-		if (getArrivalDate() == null)
+		if (getArrivalDoE() == null)
 		{
 			retVal = false;
 			arrivalDayLabel.getElement().getStyle().setColor("red");
@@ -275,7 +273,7 @@ public class InputLogisticsInfoViewImpl extends AbstractView implements InputLog
 			addMessage("Please answer the questions in red.");
 		}
 
-		if (getDepartureDate() == null)
+		if (getDepartureDoE() == null)
 		{
 			retVal = false;
 			departureDayLabel.getElement().getStyle().setColor("red");
@@ -287,6 +285,17 @@ public class InputLogisticsInfoViewImpl extends AbstractView implements InputLog
 			retVal = false;
 			departureTimeLabel.getElement().getStyle().setColor("red");
 			addMessage("Please answer the questions in red.");
+		}
+
+		// compare arrival and departure
+		if ((getArrivalDoE() != null) && (getDepartureDoE() != null))
+		{
+			if (getArrivalDoE().ordinal() >= getDepartureDoE().ordinal())
+			{
+				retVal = false;
+
+				addMessage("Your arrival date is after or equal to your departure date.");
+			}
 		}
 		return retVal;
 	}

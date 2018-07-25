@@ -23,7 +23,7 @@ public class LogisticsInfoBlockModel implements IKeyedModel
 	@Override
 	public void setPresenter(IKeyedModelPresenter p)
 	{
-		this.presenter = p;
+		presenter = p;
 	}
 
 	@Override
@@ -31,61 +31,65 @@ public class LogisticsInfoBlockModel implements IKeyedModel
 	{
 		if (key != null)
 		{
-			this.rpcService.getApplicantsLogisticsInfoBlock(key, new AsyncCallback<LogisticsInfoBlock>()
+			rpcService.getApplicantsLogisticsInfoBlock(key, new AsyncCallback<LogisticsInfoBlock>()
 			{
 
+				@Override
 				public void onSuccess(LogisticsInfoBlock result)
 				{
 					if (result == null)
 					{
-						Window.alert((String) "Applicant's Payment Info returned as null");
+						Window.alert("Applicant's Payment Info returned as null");
 						return;
 					}
-					LogisticsInfoBlockModel.this.model = result;
-					LogisticsInfoBlockModel.this.presenter.onDataFetched();
+					model = result;
+					presenter.onDataFetched();
 				}
 
+				@Override
 				public void onFailure(Throwable caught)
 				{
-					Window.alert((String) "DB Error retrieving Applicant's Payment Info");
+					Window.alert("DB Error retrieving Applicant's Payment Info");
 				}
 			});
 			return;
 		}
-		Window.alert((String) "Error no key for Applicant's Application!");
+		Window.alert("Error no key for Applicant's Application!");
 	}
 
 	@Override
 	public void putData()
 	{
-		this.rpcService.updateApplicantsLogisticsInfoBlock(this.model, new AsyncCallback<Boolean>()
+		rpcService.updateApplicantsLogisticsInfoBlock(model, new AsyncCallback<Boolean>()
 		{
 
+			@Override
 			public void onSuccess(Boolean saved)
 			{
 				if (saved.booleanValue())
 				{
-					LogisticsInfoBlockModel.this.presenter.onDataPut();
+					presenter.onDataPut();
 					return;
 				}
-				Window.alert((String) "DB Error saving Applicant's Shelter Info");
+				Window.alert("DB Error saving Applicant's Shelter Info");
 			}
 
+			@Override
 			public void onFailure(Throwable caught)
 			{
-				Window.alert((String) "RPC Error saving Applicant's Shelter Info");
+				Window.alert("RPC Error saving Applicant's Shelter Info");
 			}
 		});
 	}
 
 	public LogisticsInfoBlock getData()
 	{
-		return this.model;
+		return model;
 	}
 
 	public void setData(LogisticsInfoBlock t)
 	{
-		this.model = t;
+		model = t;
 	}
 
 }

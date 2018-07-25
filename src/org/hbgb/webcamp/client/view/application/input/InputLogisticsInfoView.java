@@ -27,17 +27,17 @@ public interface InputLogisticsInfoView extends ISequentialView, IView
 
 	public Transportation getTransportation();
 
-	public void setArrivalDate(DayOfEvent var1);
+	public void setArrivalDoE(DayOfEvent var1);
 
-	public DayOfEvent getArrivalDate();
+	public DayOfEvent getArrivalDoE();
 
 	public void setArrivalTime(PlayaTime var1);
 
 	public PlayaTime getArrivalTime();
 
-	public void setDepartureDate(DayOfEvent var1);
+	public void setDepartureDoE(DayOfEvent var1);
 
-	public DayOfEvent getDepartureDate();
+	public DayOfEvent getDepartureDoE();
 
 	public void setDepartureTime(PlayaTime var1);
 

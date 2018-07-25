@@ -168,9 +168,10 @@ public class ViewFinder
 
 	public static InputLogisticsInfoView getLogisticsInfoView()
 	{
-		if (editLogisticsView != null)
-			return editLogisticsView;
-		editLogisticsView = new InputLogisticsInfoViewImpl();
+		if (editLogisticsView == null)
+		{
+			editLogisticsView = new InputLogisticsInfoViewImpl();
+		}
 		return editLogisticsView;
 	}
 

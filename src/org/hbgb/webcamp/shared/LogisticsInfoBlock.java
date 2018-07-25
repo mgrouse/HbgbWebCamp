@@ -65,27 +65,27 @@ public class LogisticsInfoBlock implements Serializable
 
 	public LogisticsInfoBlock(String emailText)
 	{
-		this.setEmail(emailText);
+		setEmail(emailText);
 	}
 
 	public LogisticsInfoBlock(String email, LogisticsInfoBlock source)
 	{
 		if (null != source)
 		{
-			this.setEmail(source.getEmail());
-			this.setIsProfile(source.getIsProfile());
-			this.setWantsEarlyTeam(source.getWantsEarlyTeam());
-			// this.setIsAssignedEarlyTeam(source.getIsAssignedEarlyTeam());
-			this.setWantsStrikeTeam(source.getWantsStrikeTeam());
-			this.setTransType(source.getTransType());
-			this.setArrivalDoE(source.getArrivalDoE());
-			this.setArrivalTime(source.getArrivalTime());
-			this.setDepartureDoE(source.getDepartureDoE());
-			this.setDepartureTime(source.getDepartureTime());
+			setEmail(source.getEmail());
+			setIsProfile(source.getIsProfile());
+			setWantsEarlyTeam(source.getWantsEarlyTeam());
+			// setIsAssignedEarlyTeam(source.getIsAssignedEarlyTeam());
+			setWantsStrikeTeam(source.getWantsStrikeTeam());
+			setTransType(source.getTransType());
+			setArrivalDoE(source.getArrivalDoE());
+			setArrivalTime(source.getArrivalTime());
+			setDepartureDoE(source.getDepartureDoE());
+			setDepartureTime(source.getDepartureTime());
 		}
 		else
 		{
-			this.setEmail(email);
+			setEmail(email);
 		}
 	}
 
@@ -94,9 +94,9 @@ public class LogisticsInfoBlock implements Serializable
 		return encodedKey;
 	}
 
-	public void setEncodedKey(String encodedKey)
+	public void setEncodedKey(String s)
 	{
-		this.encodedKey = encodedKey;
+		encodedKey = s;
 	}
 
 	public String getEmail()
@@ -104,9 +104,9 @@ public class LogisticsInfoBlock implements Serializable
 		return email;
 	}
 
-	public void setEmail(String email)
+	public void setEmail(String s)
 	{
-		this.email = email;
+		email = s;
 	}
 
 	public Boolean getIsProfile()
@@ -114,9 +114,9 @@ public class LogisticsInfoBlock implements Serializable
 		return isProfile;
 	}
 
-	public void setIsProfile(Boolean isProfile)
+	public void setIsProfile(Boolean b)
 	{
-		this.isProfile = isProfile;
+		isProfile = b;
 	}
 
 	public Boolean getWantsEarlyTeam()
@@ -124,9 +124,9 @@ public class LogisticsInfoBlock implements Serializable
 		return wantsEarlyTeam;
 	}
 
-	public void setWantsEarlyTeam(Boolean wantsEarlyTeam)
+	public void setWantsEarlyTeam(Boolean b)
 	{
-		this.wantsEarlyTeam = wantsEarlyTeam;
+		wantsEarlyTeam = b;
 	}
 
 	public Boolean getIsAssignedEarlyTeam()
@@ -134,9 +134,9 @@ public class LogisticsInfoBlock implements Serializable
 		return isAssignedEarlyTeam;
 	}
 
-	public void setIsAssignedEarlyTeam(Boolean isAssignedEarlyTeam)
+	public void setIsAssignedEarlyTeam(Boolean b)
 	{
-		this.isAssignedEarlyTeam = isAssignedEarlyTeam;
+		isAssignedEarlyTeam = b;
 	}
 
 	public Boolean getWantsStrikeTeam()
@@ -144,9 +144,9 @@ public class LogisticsInfoBlock implements Serializable
 		return wantsStrikeTeam;
 	}
 
-	public void setWantsStrikeTeam(Boolean wantsStrikeTeam)
+	public void setWantsStrikeTeam(Boolean b)
 	{
-		this.wantsStrikeTeam = wantsStrikeTeam;
+		wantsStrikeTeam = b;
 	}
 
 	public Transportation getTransType()
@@ -154,9 +154,9 @@ public class LogisticsInfoBlock implements Serializable
 		return transType;
 	}
 
-	public void setTransType(Transportation transType)
+	public void setTransType(Transportation t)
 	{
-		this.transType = transType;
+		transType = t;
 	}
 
 	@Deprecated
@@ -166,9 +166,9 @@ public class LogisticsInfoBlock implements Serializable
 	}
 
 	@Deprecated
-	public void setArrivalDate(Date arrivalDate)
+	public void setArrivalDate(Date d)
 	{
-		this.arrivalDate = arrivalDate;
+		arrivalDate = d;
 	}
 
 	public PlayaTime getArrivalTime()
@@ -176,9 +176,9 @@ public class LogisticsInfoBlock implements Serializable
 		return arrivalTime;
 	}
 
-	public void setArrivalTime(PlayaTime arrivalTime)
+	public void setArrivalTime(PlayaTime p)
 	{
-		this.arrivalTime = arrivalTime;
+		arrivalTime = p;
 	}
 
 	@Deprecated
@@ -188,9 +188,9 @@ public class LogisticsInfoBlock implements Serializable
 	}
 
 	@Deprecated
-	public void setDepartureDate(Date departureDate)
+	public void setDepartureDate(Date d)
 	{
-		this.departureDate = departureDate;
+		departureDate = d;
 	}
 
 	public PlayaTime getDepartureTime()
@@ -198,9 +198,9 @@ public class LogisticsInfoBlock implements Serializable
 		return departureTime;
 	}
 
-	public void setDepartureTime(PlayaTime departureTime)
+	public void setDepartureTime(PlayaTime p)
 	{
-		this.departureTime = departureTime;
+		departureTime = p;
 	}
 
 	public DayOfEvent getArrivalDoE()
@@ -208,9 +208,9 @@ public class LogisticsInfoBlock implements Serializable
 		return arrivalDoE;
 	}
 
-	public void setArrivalDoE(DayOfEvent arrivalDoE)
+	public void setArrivalDoE(DayOfEvent d)
 	{
-		this.arrivalDoE = arrivalDoE;
+		arrivalDoE = d;
 	}
 
 	public DayOfEvent getDepartureDoE()
@@ -218,8 +218,8 @@ public class LogisticsInfoBlock implements Serializable
 		return departureDoE;
 	}
 
-	public void setDepartureDoE(DayOfEvent departureDoE)
+	public void setDepartureDoE(DayOfEvent d)
 	{
-		this.departureDoE = departureDoE;
+		departureDoE = d;
 	}
 }
