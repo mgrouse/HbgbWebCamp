@@ -9,7 +9,7 @@
  *
  * This copyright notice should not be construed as evidence of publication.
  */
-package org.hbgb.webcamp.client.view.admin;
+package org.hbgb.webcamp.client.view.application;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -46,13 +46,14 @@ import com.google.gwt.view.client.SingleSelectionModel;
  * @author Michael
  *
  */
-public class ApplicationListTableViewImpl extends AbstractView implements ApplicationListTableView
+public class ApplicationListFancyTableViewImpl extends AbstractView
+		implements ApplicationFancyListTableView
 {
 	static final String EMPTY_TABLE_MSG = "No Data to Display";
 
-	@UiTemplate(value = "ApplicationListTableView.ui.xml")
+	@UiTemplate(value = "ApplicationListFancyTableView.ui.xml")
 	static interface ApplicationListTableViewUiBinder
-			extends UiBinder<Widget, ApplicationListTableViewImpl>
+			extends UiBinder<Widget, ApplicationListFancyTableViewImpl>
 	{
 	}
 
@@ -102,7 +103,7 @@ public class ApplicationListTableViewImpl extends AbstractView implements Applic
 
 	private LoadingPopup loadPop;
 
-	public ApplicationListTableViewImpl()
+	public ApplicationListFancyTableViewImpl()
 	{
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -131,7 +132,7 @@ public class ApplicationListTableViewImpl extends AbstractView implements Applic
 		appTable.setWidth("100%");
 		// does the table have scroll bars?
 		// how to be able to make the table occupy all room necessary/avail
-		appTable.setHeight("900px");
+		appTable.setHeight("100px");
 
 		yearListBox.addItem("2018");
 		yearListBox.addItem("2017");
@@ -206,13 +207,13 @@ public class ApplicationListTableViewImpl extends AbstractView implements Applic
 
 		for (ApplicationRow row : rows)
 		{
-			if (row.getStatus().equals(ApplicationStatus.NEW.toString()))
+			if (row.getStatus().equals(ApplicationStatus.NEW))
 			{
 				newApps += 1;
 			}
 
 			// count the accepted member details
-			if (row.getStatus().equals(ApplicationStatus.ACCEPTED.toString()))
+			if (row.getStatus().equals(ApplicationStatus.ACCEPTED))
 			{
 				accepted += 1;
 
@@ -225,19 +226,19 @@ public class ApplicationListTableViewImpl extends AbstractView implements Applic
 					paid = paid + 1;
 				}
 
-				if (row.getCircle().equals(Circle.Faeries.toString()))
+				if (row.getCircle().equals(Circle.Faeries))
 				{
 					faerie += 1;
 				}
-				if (row.getCircle().equals(Circle.Healers.toString()))
+				if (row.getCircle().equals(Circle.Healers))
 				{
 					healer += 1;
 				}
-				if (row.getCircle().equals(Circle.Infrastructure.toString()))
+				if (row.getCircle().equals(Circle.Infrastructure))
 				{
 					infra += 1;
 				}
-				if (row.getCircle() == Circle.Kitchen)
+				if (row.getCircle().equals(Circle.Kitchen))
 				{
 					kitchen += 1;
 				}
@@ -270,12 +271,12 @@ public class ApplicationListTableViewImpl extends AbstractView implements Applic
 		// status
 		TextColumn<ApplicationRow> statusColumn = createStatusColumn();
 		appTable.addColumn(statusColumn, "Status");
-		// appTable.setColumnWidth(statusColumn, 7, Unit.PCT);
+		appTable.setColumnWidth(statusColumn, 7, Unit.PCT);
 
 		// firstName
 		TextColumn<ApplicationRow> nameColumn = createNameColumn();
 		appTable.addColumn(nameColumn, "Name");
-		// appTable.setColumnWidth(nameColumn, 15, Unit.PCT);
+		appTable.setColumnWidth(nameColumn, 15, Unit.PCT);
 
 		// playaName
 		TextColumn<ApplicationRow> playaNameColumn = createPlayaNameColumn();
@@ -285,27 +286,27 @@ public class ApplicationListTableViewImpl extends AbstractView implements Applic
 		// email
 		TextColumn<ApplicationRow> emailColumn = createEmailColumn();
 		appTable.addColumn(emailColumn, "Email");
-		// appTable.setColumnWidth(emailColumn, 15, Unit.PCT);
+		appTable.setColumnWidth(emailColumn, 15, Unit.PCT);
 
 		// circle
 		TextColumn<ApplicationRow> circleColumn = createCircleColumn();
 		appTable.addColumn(circleColumn, "Circle");
-		// appTable.setColumnWidth(circleColumn, 10, Unit.PCT);
+		appTable.setColumnWidth(circleColumn, 10, Unit.PCT);
 
 		// diet
 		TextColumn<ApplicationRow> dietColumn = createDietColumn();
 		appTable.addColumn(dietColumn, "Diet");
-		// appTable.setColumnWidth(dietColumn, 10, Unit.PCT);
+		appTable.setColumnWidth(dietColumn, 10, Unit.PCT);
 
 		// hasPaid
 		TextColumn<ApplicationRow> paidColumn = createPaidColumn();
 		appTable.addColumn(paidColumn, "Paid");
-		// appTable.setColumnWidth(paidColumn, 7, Unit.PCT);
+		appTable.setColumnWidth(paidColumn, 7, Unit.PCT);
 
 		// hasTicket
 		TextColumn<ApplicationRow> ticketColumn = createTicketColumn();
 		appTable.addColumn(ticketColumn, "Ticket");
-		// appTable.setColumnWidth(ticketColumn, 7, Unit.PCT);
+		appTable.setColumnWidth(ticketColumn, 7, Unit.PCT);
 
 		// isET
 		// TextColumn<ApplicationRow> etColumn = createEtColumn();

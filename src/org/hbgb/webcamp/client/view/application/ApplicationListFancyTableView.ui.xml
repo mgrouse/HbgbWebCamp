@@ -75,8 +75,10 @@
 				 <g:Button ui:field="refreshButton">Refresh</g:Button>
 			</g:HorizontalPanel>
 		    
-		    <c:DataGrid ui:field='appTable' />
-				
+			<g:CaptionPanel captionText="Applications" addStyleNames="fullScreen">
+			    <c:DataGrid ui:field='appTable' />
+			</g:CaptionPanel>
+		    
 		</g:VerticalPanel>
 	</g:CaptionPanel>
 </ui:UiBinder> 

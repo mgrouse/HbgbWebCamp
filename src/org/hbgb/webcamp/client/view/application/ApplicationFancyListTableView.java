@@ -9,7 +9,7 @@
  *
  * This copyright notice should not be construed as evidence of publication.
  */
-package org.hbgb.webcamp.client.view.admin;
+package org.hbgb.webcamp.client.view.application;
 
 import org.hbgb.webcamp.client.view.IView;
 import org.hbgb.webcamp.shared.ApplicationRow;
@@ -20,7 +20,7 @@ import com.google.gwt.view.client.ListDataProvider;
  * @author Michael
  *
  */
-public interface ApplicationListTableView extends IView
+public interface ApplicationFancyListTableView extends IView
 {
 
 	public interface Presenter

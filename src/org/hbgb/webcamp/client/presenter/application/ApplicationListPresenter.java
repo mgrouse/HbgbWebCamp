@@ -27,6 +27,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasWidgets;
 
+@Deprecated
 public class ApplicationListPresenter
 		implements IPresenter, ApplicationListView.Presenter<ApplicationDetails>
 {

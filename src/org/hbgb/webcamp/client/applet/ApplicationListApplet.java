@@ -20,6 +20,7 @@ import org.hbgb.webcamp.client.presenter.application.EditWholeApplicationPresent
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.ui.HasWidgets;
 
+@Deprecated
 public class ApplicationListApplet implements IApplet
 {
 	private final HandlerManager eventBus = new HandlerManager(null);

@@ -15,8 +15,8 @@ import java.util.ArrayList;
 
 import org.hbgb.webcamp.client.model.ApplicationTableModel;
 import org.hbgb.webcamp.client.presenter.IModelPresenter;
-import org.hbgb.webcamp.client.view.admin.ApplicationListTableView;
-import org.hbgb.webcamp.client.view.admin.ApplicationListTableViewImpl;
+import org.hbgb.webcamp.client.view.application.ApplicationFancyListTableView;
+import org.hbgb.webcamp.client.view.application.ApplicationListFancyTableViewImpl;
 import org.hbgb.webcamp.shared.ApplicationRow;
 
 import com.google.gwt.event.shared.HandlerManager;
@@ -30,10 +30,10 @@ import com.google.gwt.view.client.ListDataProvider;
  *
  */
 public class ApplicationListFancyPresenter
-		implements IModelPresenter, ApplicationListTableView.Presenter
+		implements IModelPresenter, ApplicationFancyListTableView.Presenter
 {
 	private ApplicationTableModel model;
-	private ApplicationListTableView view;
+	private ApplicationFancyListTableView view;
 
 	private ListDataProvider<ApplicationRow> dataProvider;
 
@@ -50,7 +50,8 @@ public class ApplicationListFancyPresenter
 		dataProvider = new ListDataProvider<>(new ArrayList<ApplicationRow>(),
 				ApplicationRow.KEY_PROVIDER);
 
-		view = new ApplicationListTableViewImpl();
+		// this should be gotten from View Finder
+		view = new ApplicationListFancyTableViewImpl();
 		view.setPresenter(this);
 		view.clear();
 	}
@@ -74,6 +75,9 @@ public class ApplicationListFancyPresenter
 		dataProvider.getList().addAll(model.getData());
 
 		view.setRowData(dataProvider);
+
+		// screen.clear();
+		// screen.add(view.asWidget());
 
 		// XXX: Use AsyncCallback in the method onRangeChanged
 		// to actually get the data from the server side
@@ -120,7 +124,6 @@ public class ApplicationListFancyPresenter
 	@Override
 	public void onRefreshButtonClicked()
 	{
-		// TODO Auto-generated method stub
 		model.setYear(view.getYear());
 		model.fetch();
 	}

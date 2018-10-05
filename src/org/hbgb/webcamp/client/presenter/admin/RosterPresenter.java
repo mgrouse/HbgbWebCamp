@@ -85,25 +85,19 @@ public class RosterPresenter implements IPresenter
 				html.append("<td class=\"rosterPic\">");
 				html.append("<img src=" + details.getPhotoURL() + "=s600-c>");
 
-				// html.append("<td style=\"background-image:url('");
-				// html.append(details.getPhotoURL());
-				// html.append("')\"; class=\"rosterPic\">");
-
 				html.append("</td>");
 
 				html.append("<td class=\"rosterBio\">");
+
+				html.append("<h2>First Name: " + details.getFirstName() + " </h2> <br/>");
 
 				if (details.getPlayaName() != null && !details.getPlayaName().isEmpty())
 				{
 					html.append("<h2>Playa Name: " + details.getPlayaName() + " </h2> <br/>");
 				}
-				else
-				{
-					html.append("<h2>First Name: " + details.getFirstName() + " </h2> <br/>");
-				}
 
 				html.append("Home town: " + details.getHomeTown() + " <br/>");
-				html.append("Committee: " + details.getCommittee() + " <br/>");
+				html.append("Circle: " + details.getCommittee() + " <br/>");
 				html.append("Bio: " + details.getBio());
 				html.append("</td>");
 				html.append("</tr>");
