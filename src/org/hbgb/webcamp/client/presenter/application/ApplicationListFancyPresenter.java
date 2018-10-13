@@ -66,13 +66,14 @@ public class ApplicationListFancyPresenter
 	@Override
 	public void go()
 	{
+		model.setYear(view.getYear());
 		model.fetch();
 	}
 
 	@Override
 	public void onFetchComplete()
 	{
-		dataProvider.getList().addAll(model.getData());
+		dataProvider.setList(model.getData());
 
 		view.setRowData(dataProvider);
 

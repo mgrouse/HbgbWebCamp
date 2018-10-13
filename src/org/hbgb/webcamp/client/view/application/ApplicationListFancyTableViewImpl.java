@@ -109,30 +109,27 @@ public class ApplicationListFancyTableViewImpl extends AbstractView
 
 		loadPop = new LoadingPopup();
 
-		// selection model
+		// Selection Model
 		selectionModel = new SingleSelectionModel<>(ApplicationRow.KEY_PROVIDER);
-		sortHandler = new ListHandler<>(new ArrayList<ApplicationRow>());
-
-		// necessary?
-		appTable = new DataGrid<>(ApplicationRow.KEY_PROVIDER);
-
-		appTable.setAutoHeaderRefreshDisabled(true);
-
-		// blank message
-		appTable.setEmptyTableWidget(new Label("EMPTY_TABLE_MSG"));
 
 		appTable.setSelectionModel(selectionModel,
 				DefaultSelectionEventManager.<ApplicationRow> createCheckboxManager());
 
+		// Sort Handler
+		sortHandler = new ListHandler<>(new ArrayList<ApplicationRow>());
 		appTable.addColumnSortHandler(sortHandler);
 
-		// this would need to be different functions for each ViewButton
+		appTable.setAutoHeaderRefreshDisabled(true);
+
+		// blank message
+		appTable.setEmptyTableWidget(new Label(EMPTY_TABLE_MSG));
+
 		addColumnsToDataGrid();
 
 		appTable.setWidth("100%");
 		// does the table have scroll bars?
 		// how to be able to make the table occupy all room necessary/avail
-		appTable.setHeight("100px");
+		appTable.setHeight("300px");
 
 		yearListBox.addItem("2018");
 		yearListBox.addItem("2017");
@@ -186,6 +183,9 @@ public class ApplicationListFancyTableViewImpl extends AbstractView
 		sortHandler.setList(dataProvider.getList());
 
 		dataProvider.addDataDisplay(appTable);
+
+		// appTable.setRowCount(dataProvider.getList().size(), true);
+		// appTable.setRowData(0, dataProvider.getList());
 
 		refreshButton.setEnabled(true);
 		loadPop.stop();
