@@ -4,12 +4,12 @@
 	         xmlns:c="urn:import:com.google.gwt.user.cellview.client">
 
     
-	<g:CaptionPanel captionText="Application List" addStyleNames="fullScreen">
-		<g:VerticalPanel>
+	<g:CaptionPanel captionText="Application List">
+		<g:VerticalPanel addStyleNames="fullScreen">
 		    
 		    <g:HorizontalPanel addStyleNames="fullScreen">
 			    
-			    <g:VerticalPanel addStyleNames="left">
+			    <g:VerticalPanel addStyleNames="formTwoColumn"> <!-- addStyleNames="left" -->
 					<g:HorizontalPanel verticalAlignment="ALIGN_MIDDLE" addStyleNames="formRow">	
 				        <g:Label addStyleNames="mediumLabel" text="Total Applicants"/>
 				    	<g:TextBox ui:field="totalApps"/>
@@ -36,7 +36,7 @@
 					</g:HorizontalPanel>
 				</g:VerticalPanel>
 				
-			    <g:VerticalPanel addStyleNames="right">
+			    <g:VerticalPanel addStyleNames="formTwoColumn"> <!-- addStyleNames="right" -->
 					<g:HorizontalPanel verticalAlignment="ALIGN_MIDDLE" addStyleNames="formRow">	
 				        <g:Label addStyleNames="mediumLabel" text="Faeries"/>
 				    	<g:TextBox ui:field="faerieApps"/>
@@ -75,7 +75,7 @@
 				 <g:Button ui:field="refreshButton">Refresh</g:Button>
 			</g:HorizontalPanel>
 		    
-			<g:CaptionPanel captionText="Applications" addStyleNames="fullScreen">
+			<g:CaptionPanel captionText="Applications">
 			    <c:DataGrid ui:field='appTable' />
 			</g:CaptionPanel>
 		    

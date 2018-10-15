@@ -119,7 +119,7 @@ public class ApplicationListFancyPresenter
 		// model.put()
 		// delete following refresh and place that line in onPutComplete()
 
-		dataProvider.refresh();
+		// dataProvider.refresh();
 	}
 
 	@Override

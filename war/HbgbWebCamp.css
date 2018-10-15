@@ -31,11 +31,15 @@ gwt-CaptionPanel
     padding-bottom: 0px;
     padding-left: 0px;
     padding-right: 0px;
+    
+    width: 100%;
 } 
 
 .fullScreen
 {
-	width:  95%;
+	min-width: 100%; 
+	
+	/*width: auto; */
 	/* height: 100% */
 }
 

@@ -139,6 +139,10 @@ public class ApplicationListFancyTableViewImpl extends AbstractView
 	public void setPresenter(Presenter p)
 	{
 		presenter = p;
+
+		// get data provider
+		// add display(this)
+		//
 	}
 
 	@Override
@@ -182,10 +186,11 @@ public class ApplicationListFancyTableViewImpl extends AbstractView
 		setTotalFields(dataProvider.getList());
 		sortHandler.setList(dataProvider.getList());
 
-		dataProvider.addDataDisplay(appTable);
-
-		// appTable.setRowCount(dataProvider.getList().size(), true);
-		// appTable.setRowData(0, dataProvider.getList());
+		// check to see if we need to add our display, i.e. appTable
+		if (!dataProvider.getDataDisplays().contains(appTable))
+		{
+			dataProvider.addDataDisplay(appTable);
+		}
 
 		refreshButton.setEnabled(true);
 		loadPop.stop();
@@ -309,14 +314,14 @@ public class ApplicationListFancyTableViewImpl extends AbstractView
 		appTable.setColumnWidth(ticketColumn, 7, Unit.PCT);
 
 		// isET
-		// TextColumn<ApplicationRow> etColumn = createEtColumn();
-		// appTable.addColumn(etColumn, "ET");
-		// appTable.setColumnWidth(etColumn, 5, Unit.PCT);
+		TextColumn<ApplicationRow> etColumn = createEtColumn();
+		appTable.addColumn(etColumn, "ET");
+		appTable.setColumnWidth(etColumn, 5, Unit.PCT);
 
 		// isStrike
-		// TextColumn<ApplicationRow> strikeColumn = createStrikeColumn();
-		// appTable.addColumn(strikeColumn, "Strike");
-		// appTable.setColumnWidth(strikeColumn, 5, Unit.PCT);
+		TextColumn<ApplicationRow> strikeColumn = createStrikeColumn();
+		appTable.addColumn(strikeColumn, "Strike");
+		appTable.setColumnWidth(strikeColumn, 5, Unit.PCT);
 
 		// hasRV
 		// TextColumn<ApplicationRow> rvColumn = createRvColumn();
@@ -628,6 +633,82 @@ public class ApplicationListFancyTableViewImpl extends AbstractView
 		// });
 
 		return ticketColumn;
+	}
+
+	private TextColumn<ApplicationRow> createEtColumn()
+	{
+		TextColumn<ApplicationRow> etColumn = new TextColumn<ApplicationRow>()
+		{
+			@Override
+			public String getValue(ApplicationRow row)
+			{
+				return Utils.nullOrString(row.getHasTicket());
+			}
+		};
+
+		etColumn.setSortable(true);
+		sortHandler.setComparator(etColumn, new Comparator<ApplicationRow>()
+		{
+			@Override
+			public int compare(ApplicationRow r1, ApplicationRow r2)
+			{
+				return Utils.nullOrString(r1.getHasTicket())
+						.compareTo(Utils.nullOrString(r2.getHasTicket()));
+			}
+		});
+
+		// ticketColumn.setFieldUpdater(null);
+		// probably shouldn't let Admins edit peoples' names
+		// new FieldUpdater<ApplicationRow, String>()
+		// {
+		// @Override
+		// public void update(int index, ApplicationRow row, String value)
+		// {
+		// // Called when the user changes the value.
+		// row.setFirstName(value);
+		// presenter.onRowEdit();
+		// }
+		// });
+
+		return etColumn;
+	}
+
+	private TextColumn<ApplicationRow> createStrikeColumn()
+	{
+		TextColumn<ApplicationRow> etColumn = new TextColumn<ApplicationRow>()
+		{
+			@Override
+			public String getValue(ApplicationRow row)
+			{
+				return Utils.nullOrString(row.getHasTicket());
+			}
+		};
+
+		etColumn.setSortable(true);
+		sortHandler.setComparator(etColumn, new Comparator<ApplicationRow>()
+		{
+			@Override
+			public int compare(ApplicationRow r1, ApplicationRow r2)
+			{
+				return Utils.nullOrString(r1.getHasTicket())
+						.compareTo(Utils.nullOrString(r2.getHasTicket()));
+			}
+		});
+
+		// ticketColumn.setFieldUpdater(null);
+		// probably shouldn't let Admins edit peoples' names
+		// new FieldUpdater<ApplicationRow, String>()
+		// {
+		// @Override
+		// public void update(int index, ApplicationRow row, String value)
+		// {
+		// // Called when the user changes the value.
+		// row.setFirstName(value);
+		// presenter.onRowEdit();
+		// }
+		// });
+
+		return etColumn;
 	}
 
 	public void setTotalApps(String value)
