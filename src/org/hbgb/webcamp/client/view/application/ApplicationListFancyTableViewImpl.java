@@ -22,6 +22,7 @@ import org.hbgb.webcamp.shared.Utils;
 import org.hbgb.webcamp.shared.enums.ApplicationStatus;
 import org.hbgb.webcamp.shared.enums.Circle;
 
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -394,19 +395,6 @@ public class ApplicationListFancyTableViewImpl extends AbstractView
 			}
 		});
 
-		// nameColumn.setFieldUpdater(null);
-		// probably shouldn't let Admins edit peoples' names
-		// new FieldUpdater<ApplicationRow, String>()
-		// {
-		// @Override
-		// public void update(int index, ApplicationRow row, String value)
-		// {
-		// // Called when the user changes the value.
-		// row.setFirstName(value);
-		// presenter.onRowEdit();
-		// }
-		// });
-
 		return nameColumn;
 	}
 
@@ -431,19 +419,6 @@ public class ApplicationListFancyTableViewImpl extends AbstractView
 			}
 		});
 
-		// playaNameColumn.setFieldUpdater(null);
-		// probably shouldn't let Admins edit peoples' names
-		// new FieldUpdater<ApplicationRow, String>()
-		// {
-		// @Override
-		// public void update(int index, ApplicationRow row, String value)
-		// {
-		// // Called when the user changes the value.
-		// row.setFirstName(value);
-		// presenter.onRowEdit();
-		// }
-		// });
-
 		return playaNameColumn;
 	}
 
@@ -467,19 +442,6 @@ public class ApplicationListFancyTableViewImpl extends AbstractView
 				return r1.getEmail().compareTo(r2.getEmail());
 			}
 		});
-
-		// emailColumn.setFieldUpdater(null);
-		// probably shouldn't let Admins edit peoples' names
-		// new FieldUpdater<ApplicationRow, String>()
-		// {
-		// @Override
-		// public void update(int index, ApplicationRow row, String value)
-		// {
-		// // Called when the user changes the value.
-		// row.setFirstName(value);
-		// presenter.onRowEdit();
-		// }
-		// });
 
 		return emailColumn;
 	}
@@ -506,18 +468,16 @@ public class ApplicationListFancyTableViewImpl extends AbstractView
 			}
 		});
 
-		// circleColumn.setFieldUpdater(null);
-		// probably shouldn't let Admins edit peoples' names
-		// new FieldUpdater<ApplicationRow, String>()
-		// {
-		// @Override
-		// public void update(int index, ApplicationRow row, String value)
-		// {
-		// // Called when the user changes the value.
-		// row.setFirstName(value);
-		// presenter.onRowEdit();
-		// }
-		// });
+		circleColumn.setFieldUpdater(new FieldUpdater<ApplicationRow, String>()
+		{
+			@Override
+			public void update(int index, ApplicationRow row, String value)
+			{
+				// Called when the user changes the value.
+				row.setFirstName(value);
+				presenter.onRowEdit(row);
+			}
+		});
 
 		return circleColumn;
 	}
@@ -542,19 +502,6 @@ public class ApplicationListFancyTableViewImpl extends AbstractView
 				return Utils.nullOrString(r1.getDiet()).compareTo(Utils.nullOrString(r2.getDiet()));
 			}
 		});
-
-		// dietColumn.setFieldUpdater(null);
-		// probably shouldn't let Admins edit peoples' names
-		// new FieldUpdater<ApplicationRow, String>()
-		// {
-		// @Override
-		// public void update(int index, ApplicationRow row, String value)
-		// {
-		// // Called when the user changes the value.
-		// row.setFirstName(value);
-		// presenter.onRowEdit();
-		// }
-		// });
 
 		return dietColumn;
 	}
@@ -642,7 +589,7 @@ public class ApplicationListFancyTableViewImpl extends AbstractView
 			@Override
 			public String getValue(ApplicationRow row)
 			{
-				return Utils.nullOrString(row.getHasTicket());
+				return Utils.nullOrString(row.getIsET());
 			}
 		};
 
@@ -652,8 +599,7 @@ public class ApplicationListFancyTableViewImpl extends AbstractView
 			@Override
 			public int compare(ApplicationRow r1, ApplicationRow r2)
 			{
-				return Utils.nullOrString(r1.getHasTicket())
-						.compareTo(Utils.nullOrString(r2.getHasTicket()));
+				return Utils.nullOrString(r1.getIsET()).compareTo(Utils.nullOrString(r2.getIsET()));
 			}
 		});
 
@@ -680,7 +626,7 @@ public class ApplicationListFancyTableViewImpl extends AbstractView
 			@Override
 			public String getValue(ApplicationRow row)
 			{
-				return Utils.nullOrString(row.getHasTicket());
+				return Utils.nullOrString(row.getIsStrike());
 			}
 		};
 
@@ -690,8 +636,8 @@ public class ApplicationListFancyTableViewImpl extends AbstractView
 			@Override
 			public int compare(ApplicationRow r1, ApplicationRow r2)
 			{
-				return Utils.nullOrString(r1.getHasTicket())
-						.compareTo(Utils.nullOrString(r2.getHasTicket()));
+				return Utils.nullOrString(r1.getIsStrike())
+						.compareTo(Utils.nullOrString(r2.getIsStrike()));
 			}
 		});
 

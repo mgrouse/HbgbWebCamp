@@ -21,8 +21,6 @@ import org.hbgb.webcamp.shared.ApplicationRow;
 
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.ui.HasWidgets;
-import com.google.gwt.view.client.AsyncDataProvider;
-import com.google.gwt.view.client.HasData;
 import com.google.gwt.view.client.ListDataProvider;
 
 /**
@@ -79,29 +77,13 @@ public class ApplicationListFancyPresenter
 
 		// screen.clear();
 		// screen.add(view.asWidget());
-
-		// XXX: Use AsyncCallback in the method onRangeChanged
-		// to actually get the data from the server side
-		AsyncDataProvider<ApplicationRow> provider = new AsyncDataProvider<ApplicationRow>()
-		{
-			@Override
-			protected void onRangeChanged(HasData<ApplicationRow> display)
-			{
-				int start = display.getVisibleRange().getStart();
-				int end = start + display.getVisibleRange().getLength();
-				// end = end >= CONTACTS.size() ? CONTACTS.size() : end;
-				// List<Contact> sub = CONTACTS.subList(start, end);
-				// updateRowData(start, sub);
-			}
-		};
-
 	}
 
 	@Override
 	public void onPutComplete()
 	{
 		// TODO Auto-generated method stub
-
+		// refresh displays
 	}
 
 	@Override
@@ -112,14 +94,11 @@ public class ApplicationListFancyPresenter
 	}
 
 	@Override
-	public void onRowEdit()
+	public void onRowEdit(ApplicationRow row)
 	{
 		// send new data to database here
 		// model.xxx()
 		// model.put()
-		// delete following refresh and place that line in onPutComplete()
-
-		// dataProvider.refresh();
 	}
 
 	@Override

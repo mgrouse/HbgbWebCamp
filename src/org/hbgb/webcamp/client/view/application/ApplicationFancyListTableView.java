@@ -27,7 +27,7 @@ public interface ApplicationFancyListTableView extends IView
 	{
 		public void onRowSelect();
 
-		public void onRowEdit();
+		public void onRowEdit(ApplicationRow row);
 
 		public void onRefreshButtonClicked();
 	}

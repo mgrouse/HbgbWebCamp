@@ -32,7 +32,7 @@ public class WebCampEntryPoint implements EntryPoint, ValueChangeHandler<String>
 
 		if ("".equals(History.getToken()))
 		{
-			History.newItem("apply");
+			History.newItem("admin");
 		}
 		else
 		{
